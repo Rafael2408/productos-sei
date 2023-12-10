@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { registerRequest } from '../api/auth'
+import { registerRequest, emailRequest } from '../api/auth'
 
 export const AuthContext = createContext();
 
@@ -15,16 +15,21 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    useEffect(() => {
-        console.log("printed of useEffect ", isAuthenticated)
-    }, [isAuthenticated])
 
     const signup = async (user) => {
         try {
             const res = await registerRequest(user)
-            console.log(res.data)
-            setUser(res.data)
             setIsAuthenticated(true)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const emailConfirmation = async (user) => {
+        try {
+            await emailRequest(user.usu_correo)
+            setUser(user)
+            // setIsAuthenticated(true)
         } catch (error) {
             console.log(error)
         }
@@ -32,6 +37,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{
+            emailConfirmation,
             signup,
             user,
             isAuthenticated
