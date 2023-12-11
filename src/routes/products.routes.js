@@ -8,7 +8,7 @@ const {
     updateProduct,
 } = require('../controllers/products.controller');
 const authRequired = require('../middlewares/validateToken');
-const validateSchema = require('../middlewares/validateSchema.middleware');
+const {validateSchema} = require('../middlewares/validateSchema.middleware');
 const { createProductSchema } = require('../schemas/product.schema');
 
 const router = Router();

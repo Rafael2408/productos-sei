@@ -5,8 +5,8 @@ const { createAccessToken } = require('../libs/jwt.js')
 
 const register = async (req, res) => {
     const { usu_nombre, usu_correo, usu_password } = req.body
-
     try {
+        
         const passwordHash = await bcrypt.hash(usu_password, 10) // 10 es el número de veces que se ejecuta el algoritmo
 
         const response = await pool.query(`

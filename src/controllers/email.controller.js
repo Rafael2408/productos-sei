@@ -43,3 +43,4 @@ exports.getConfirmationCode = function (userEmail) {
     // Devolver el código de confirmación
     return codigoConfirmacion;
 };
+

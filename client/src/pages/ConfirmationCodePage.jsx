@@ -12,11 +12,10 @@ function ConfirmationCodePage() {
     const onSubmit = async (data) => {
         try {
             const storedCode = await getConfirmationCode(user.usu_correo);
-            console.log(storedCode, data.confirmationCode);
+            // console.log(storedCode, data.confirmationCode); momento que imprimía el código
             if (data.confirmationCode == storedCode.confirmationCode) {
                 // Código de confirmación correcto
                 await signup(user);
-                console.log('impresion de uuuuuuuuuuuser\n', user)
                 navigate('/products');
             } else {
                 // Código de confirmación incorrecto
@@ -26,8 +25,6 @@ function ConfirmationCodePage() {
             console.error("Error en onSubmit: ", error);
         }
     };
-
-
 
     useEffect(() => {
         if (isAuthenticated) navigate('/products');
