@@ -32,20 +32,28 @@ const login = async (req, res) => {
     const { usu_correo, usu_password } = req.body
 
     try {
-        const userFound = await pool.query(`SELECT * FROM usuarios WHERE usu_correo = $1`, [usu_correo])
+        const userFound = await pool.query(`
+            SELECT usu_nombre, usu_correo ,usu_password, u.rol_id FROM usuarios u, rol r
+            WHERE u.rol_id = r.rol_id
+            AND u.usu_correo = $1
+        `, [usu_correo])
         if(!userFound.rows[0]) return res.status(400).json({ message: 'Usuario no encontrado' })
 
         const isMatch = await bcrypt.compare(usu_password, userFound.rows[0].usu_password)
         if(!isMatch) return res.status(400).json({ message: 'Contraseña incorrecta' })
 
-        //Generacion del token
-        const token = await createAccessToken({ id: userFound.rows[0].usu_id })
+        // //Generacion del token
+        const token = await createAccessToken({ 
+            id: userFound.rows[0].usu_id,
+            rol: userFound.rows[0].rol_id
+        })
 
         res.cookie('token', token)
         res.json({
             id: userFound.rows[0].usu_id,
             nombre: userFound.rows[0].usu_nombre,
             correo: userFound.rows[0].usu_correo,
+            rol: userFound.rows[0].rol_id
         })
     } catch (error) {
         res.status(500).json({ message: error.message })

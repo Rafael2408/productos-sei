@@ -1,0 +1,39 @@
+#registerForm {
+    background-color: #44576D;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.text-success, .text-danger, .form-label {
+    font-weight: bold;
+}
+
+.errorsLogin{
+    color: rgb(224, 85, 85);
+    font-weight: bold;
+}
+
+.haveAcount{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+    
+.links{
+    color:rgb(98, 196, 196)
+}
+
+button{
+    margin-top: 10px;
+}
+
+.inputs{
+    width: 108%;
+}
