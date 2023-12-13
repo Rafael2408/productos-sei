@@ -24,7 +24,8 @@ exports.sendConfirmationEmail = function (userEmail) {
         from: 'correos.seguridad2024@gmail.com',
         to: userEmail,
         subject: 'Código de confirmación',
-        text: `Tu código de confirmación es ${codigoConfirmacion}`
+        html: `<p style="font-size:20px">Tu código de confirmación para finalizar el registro es:</p><p style="font-size:30px">
+        ${codigoConfirmacion}</p>`
     };
 
     transporter.sendMail(mailOptions, function (error, info) {

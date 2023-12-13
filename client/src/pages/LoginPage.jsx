@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import '../styles/formstyle.css'
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function LoginPage() {
   const {
@@ -16,7 +16,35 @@ function LoginPage() {
   const [captchaValue, setCaptchaValue] = useState(null)
   const [errorsArray, seterrorsArray] = useState(null)
 
-  const {signin, errors: signinErrors} = useAuth();
+  const {signin, errors: signinErrors, user, isAuthenticated} = useAuth();
+  const navigate = useNavigate();
+
+  function handleRoleNavigation(usu_rol) {
+    switch (usu_rol) {
+      case 1:
+        navigate('/admin')
+        break;
+      case 2:
+        navigate('/operador')
+        break;
+      case 3:
+        navigate('/auditor')
+        break;
+      case 4:
+        navigate('/products')
+        break;
+      default:
+        // Maneja cualquier otro caso
+        break;
+    }
+  }
+
+  useEffect(() => {
+    if(isAuthenticated && user){
+      handleRoleNavigation(user.rol)
+    }
+  }, [isAuthenticated, user])
+
 
   const onSubmit = handleSubmit((data) => {
     if(captchaValue){
@@ -78,7 +106,7 @@ function LoginPage() {
                   {...register("usu_password", {
                     required: "La contraseña es requerida",
                     minLength: {
-                      value: 6,
+                      value: 8,
                       message: "La contraseña debe tener al menos 8 caracteres",
                     },
                   })}

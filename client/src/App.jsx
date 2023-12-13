@@ -9,6 +9,11 @@ import ProductsPage from './pages/ProductsPage'
 import ProfilePage from './pages/ProfilePage'
 import HomePage from './pages/HomePage'
 
+import ProtectedRoute from './ProtectedRoute'
+import AdminPage from './pages/AdminPage'
+import AuditorPage from './pages/AuditorPage'
+import OperadorPage from './pages/OperadorPage'
+
 
 function App() {
   return (
@@ -18,13 +23,19 @@ function App() {
           <Route path='/' element={<HomePage/>} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />
-
           <Route path='/confirmation-code' element={< ConfirmationCodePage/>} />
 
-          <Route path='/products' element={<ProductsPage/>} />
-          <Route path='/add-product' element={<ProductFormPage/>} />
-          <Route path='/products/:id' element={<ProductFormPage/>} />
-          <Route path='/profile' element={<ProfilePage/>} />
+          <Route element={<ProtectedRoute/>}>
+            <Route path='/products' element={<ProductsPage />} />
+            <Route path='/add-product' element={<ProductFormPage />} />
+            <Route path='/products/:id' element={<ProductFormPage />} />
+            <Route path='/profile' element={<ProfilePage />} />
+
+            <Route path='/admin' element={<AdminPage/>}/>
+            <Route path='/auditor' element={<AuditorPage/>}/>
+            <Route path='/operador' element={<OperadorPage/>}/>
+
+          </Route>
 
           
 

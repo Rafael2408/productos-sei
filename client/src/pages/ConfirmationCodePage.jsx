@@ -1,3 +1,5 @@
+import '../styles/formstyle.css'
+
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -32,16 +34,27 @@ function ConfirmationCodePage() {
 
     return (
         <>
-            <h1>Te hemos enviado un correo a {user && user.usu_correo}</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input
-                    type="text"
-                    {...register('confirmationCode')}
-                    placeholder="Ingrese el código de confirmación"
-                />
-                <br />
-                <button type="submit">Confirmar</button>
-            </form>
+            <div>
+                <div
+                    className="d-flex flex-column justify-content-center align-items-center"
+                    style={{ height: "100vh" }}
+                >
+                    <div id="confirmationForm">
+                        <h2>Te hemos enviado un código de confirmación al correo</h2>
+                        <h2>{user && user.usu_correo}</h2>
+                        <form onSubmit={handleSubmit(onSubmit)} className='formCode'>
+                            <input
+                                className="form-control inputs"
+                                type="text"
+                                {...register('confirmationCode')}
+                                placeholder="Ingrese el código de confirmación"
+                            />
+                            <br />
+                            <button className='btn btn-primary' type="submit">Confirmar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
