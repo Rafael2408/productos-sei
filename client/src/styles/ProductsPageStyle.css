@@ -1,0 +1,13 @@
+.table{
+    color: white;
+}
+
+.btn{
+    margin: 3px;
+}
+
+#centrarDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

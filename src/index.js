@@ -7,6 +7,8 @@ const emailRoutes = require('./routes/email.routes')
 const authRoutes = require('./routes/auth.routes.js')
 const productRoutes = require('./routes/products.routes');
 
+const auditRoutes = require('./routes/audit.routes.js');
+
 const app = express();
 
 app.use(cors({
@@ -17,7 +19,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(cookieParser())
 
-app.use(productRoutes);
+app.use('/api',productRoutes);
+app.use('/api', auditRoutes);
 
 app.use('/api',authRoutes);
 app.use('/api/', emailRoutes)

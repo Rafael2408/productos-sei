@@ -1,0 +1,16 @@
+#productForm {
+    background-color: #3d5d6b;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+body{
+    background-color: #3a6867;
+}

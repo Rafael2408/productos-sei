@@ -1,7 +1,7 @@
-import '../styles/formstyle.css'
+import '../../styles/formstyle.css'
 
 import { useForm } from 'react-hook-form'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom'
 

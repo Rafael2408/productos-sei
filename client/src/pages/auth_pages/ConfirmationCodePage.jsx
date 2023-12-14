@@ -1,9 +1,9 @@
-import '../styles/formstyle.css'
+import '../../styles/formstyle.css'
 
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { getConfirmationCode } from '../api/auth'
+import { getConfirmationCode } from '../../api/auth'
 import { useEffect } from 'react';
 
 function ConfirmationCodePage() {
@@ -14,13 +14,10 @@ function ConfirmationCodePage() {
     const onSubmit = async (data) => {
         try {
             const storedCode = await getConfirmationCode(user.usu_correo);
-            // console.log(storedCode, data.confirmationCode); momento que imprimía el código
             if (data.confirmationCode == storedCode.confirmationCode) {
-                // Código de confirmación correcto
                 await signup(user);
                 navigate('/products');
             } else {
-                // Código de confirmación incorrecto
                 alert('Código de confirmación incorrecto');
             }
         } catch (error) {

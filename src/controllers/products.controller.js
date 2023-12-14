@@ -3,7 +3,7 @@ const pool = require('../db')
 const getAllProducts = async (req, res) => {
     try {
         const response = await pool.query(`SELECT * FROM productos`)
-        console.log(response)
+        console.log(response.rows)
         res.json(response.rows)
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -39,7 +39,14 @@ const createProduct = async (req, res) => {
 }
 
 const deleteProduct = async (req, res) => {
-    res.send("deleting a product");
+    try{
+        const { id } = req.params
+        await pool.query(`DELETE FROM productos WHERE pro_id = $1`, [id])
+        res.json(`Producto ${id} eliminado exitosamente`)
+
+    }catch (error) {
+        res.status(500).json({ message: error.message })
+    }
 }
 
 const updateProduct = async (req, res) => {
