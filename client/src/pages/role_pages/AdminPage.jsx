@@ -1,6 +1,11 @@
+import ProductsPage from "../ProductsPage"
+
 function AdminPage() {
   return (
-    <div>AdminPage</div>
+    <>
+      <div>AdminPage</div>
+      <ProductsPage/>
+    </>
   )
 }
 

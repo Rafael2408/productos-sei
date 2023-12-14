@@ -41,6 +41,12 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const logout = async () => {
+        Cookies.remove('token')
+        setIsAuthenticated(false)
+        setUser(null)
+    }
+
     const emailConfirmation = async (user) => {
         try {
             await emailRequest(user.usu_correo)
@@ -117,6 +123,7 @@ export const AuthProvider = ({ children }) => {
             emailConfirmation,
             signup,
             signin,
+            logout,
             loading,
             errors,
             user,

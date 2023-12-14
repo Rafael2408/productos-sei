@@ -3,8 +3,10 @@ import '../styles/productStyle.css'
 import { useAuth } from '../context/AuthContext';
 import { useForm } from "react-hook-form";
 import { useProducts } from '../context/ProductContext';
+import { useNavigate } from 'react-router-dom';
 
 function ProductFormPage() {
+  const navigate = useNavigate()
 
   const { register, handleSubmit } = useForm()
   const {createProduct} = useProducts()
@@ -12,6 +14,7 @@ function ProductFormPage() {
   const { user } = useAuth();
 
   const onSubmit = handleSubmit((data) => {
+    console.log(user)
     const { pro_nombre, pro_descripcion, pro_precio, pro_cantidad, cat_id } = data
     const product = {
       pro_nombre,
@@ -22,12 +25,13 @@ function ProductFormPage() {
       usu_id: user.user_id
     }
     createProduct(product)
+    navigate('/products')
   })
 
 
   return (
     
-    <div>
+    <MagicMotion>
       <div className="d-flex flex-column justify-content-center align-items-center"
         style={{ height: "100vh" }}>
         <div className='col-6' id="productForm">
@@ -76,13 +80,13 @@ function ProductFormPage() {
                 <option value={9}>Productos Pesqueros</option>
               </select>
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-success" id='btnsubmit'>
               Guardar
             </button>
           </form>
         </div>
       </div>
-    </div>
+    </MagicMotion>
   )
 }
 

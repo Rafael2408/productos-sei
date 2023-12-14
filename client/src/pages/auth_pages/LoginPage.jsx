@@ -1,8 +1,9 @@
+import '../../styles/formstyle.css'
+
 import ReCAPTCHA from "react-google-recaptcha";
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import '../../styles/formstyle.css'
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -126,7 +127,7 @@ function LoginPage() {
                 onChange={handleCaptchaChange}
               />
 
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary" id="btnSubmit">
                 Ingresar
               </button>
             </form>

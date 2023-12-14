@@ -11,6 +11,10 @@
     border-radius: 10px;
 }
 
+#btnsubmit{
+    width: 100%;
+}
+
 body{
     background-color: #3a6867;
 }

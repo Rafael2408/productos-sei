@@ -2,8 +2,11 @@ const pool = require('../db')
 
 const getAllProducts = async (req, res) => {
     try {
-        const response = await pool.query(`SELECT * FROM productos`)
-        console.log(response.rows)
+        const response = await pool.query(`
+            SELECT pro_id, pro_nombre, pro_descripcion, pro_precio, pro_cantidad, u.usu_nombre, c.cat_nombre
+            FROM productos p, usuarios u, categoria c
+            WHERE p.usu_id = u.usu_id AND p.cat_id = c.cat_id
+        `)
         res.json(response.rows)
     } catch (error) {
         res.status(500).json({ message: error.message })

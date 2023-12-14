@@ -1,90 +1,38 @@
-import '../../styles/ProductsPageStyle.css'
-import { useEffect } from "react"
-import { useAudit } from "../../context/AuditContext"
-import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+import React, { useState } from 'react';
+import AuditorActions from '../../components/AuditorActions.jsx'
+import AuditorUsers from '../../components/AuditorUsers.jsx'
+import { motion, useAnimation } from 'framer-motion';
 
 function AuditorPage() {
+  const [selectedAnalysis, setSelectedAnalysis] = useState('');
+  const controls = useAnimation();
 
-  const { dataAudit, getDataAudit } = useAudit()
-
-  useEffect(() => {
-    getDataAudit()
-    console.log(dataAudit)
-  }, [])
-
-  const actionCounts = dataAudit.reduce((counts, audit) => {
-    counts[audit.aud_accion] = (counts[audit.aud_accion] || 0) + 1;
-    return counts;
-  }, {});
-  const data = Object.keys(actionCounts).map((key, index) => ({
-    name: key,
-    value: actionCounts[key],
-    color: ['rgb(152, 251, 152)', 'rgb(135, 206, 235)', 'rgb(255, 192, 203)'][index % 3] // Colores para 'INSERT', 'UPDATE', 'DELETE'
-  }));
-
-
-  const userCounts = dataAudit.reduce((counts, audit) => {
-    counts[audit.usu_nombre] = (counts[audit.usu_nombre] || 0) + 1;
-    return counts;
-  }, {});
-  // Convertir el objeto a un array y ordenarlo de mayor a menor
-  const sortedUsers = Object.keys(userCounts).map(key => ({
-    name: key,
-    value: userCounts[key]
-  })).sort((a, b) => b.value - a.value);
-  // Tomar solo los primeros 5 usuarios
-  const topUsers = sortedUsers.slice(0, 5);
+  const handleAnalysisChange = (event) => {
+    setSelectedAnalysis(event.target.value);
+    controls.start({
+      backgroundColor: ["#fff", "#ddd", "#fff"],
+      transition: { duration: 1 }
+    });
+  };
 
   return (
     <>
       <h1>AuditorPage</h1>
-      <div id='centrarDiv'>
-        <h2>Análisis de Acciones de Auditoría</h2>
-        <PieChart width={500} height={500}>
-          <Pie
-            data={data}
-            cx={250}
-            cy={250}
-            labelLine={false}
-            outerRadius={180}
-            fill="#8884d8"
-            dataKey="value"
-          >
-            {
-              data.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)
-            }
-          </Pie>
-          <Tooltip />
-          <Legend />
-        </PieChart>
-      </div>
+      <div>
+        <motion.select
+          animate={controls}
+          value={selectedAnalysis}
+          onChange={handleAnalysisChange}
+        >
+          <option value="">-- Por favor selecciona un análisis --</option>
+          <option value="acciones">Análisis de Acciones de Auditoría</option>
+          <option value="usuarios">Top 5 Usuarios con Más Acciones Registradas</option>
+          {/* Agrega aquí más opciones según sea necesario */}
+        </motion.select>
 
-
-      <div id='centrarDiv'>
-        <h2>Top 5 Usuarios con Más Acciones Registradas</h2>
-        <PieChart width={500} height={500}>
-          <Pie
-            data={topUsers}
-            cx={250}
-            cy={250}
-            labelLine={false}
-            outerRadius={180}
-            fill="#8884d8"
-            dataKey="value"
-          >
-            {
-              topUsers.map((entry, index) => <Cell key={`cell-${index}`} fill={[
-                'rgb(255, 182, 193)', 
-                'rgb(240, 230, 140)', 
-                'rgb(152, 251, 152)', 
-                'rgb(135, 206, 235)', 
-                'rgb(221, 160, 221)'
-              ][index % 5]} />)
-            }
-          </Pie>
-          <Tooltip />
-          <Legend />
-        </PieChart>
+        {selectedAnalysis === 'acciones' && <AuditorActions />}
+        {selectedAnalysis === 'usuarios' && <AuditorUsers />}
+        {/* Asegúrate de tener los componentes AuditorActions y AuditorUsers definidos */}
       </div>
     </>
   )

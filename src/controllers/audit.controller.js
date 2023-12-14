@@ -13,6 +13,21 @@ const getAllAudit = async ( req, res ) => {
     }
 }
 
+const createDeleteOfProduct = async (req, res) => {
+    try {
+        const { id } = req.params
+        const response = await pool.query(`
+            INSERT INTO auditoria(usu_id, aud_accion, aud_tabla, aud_fecha)
+            VALUES($1, 'DELETE', 'USUARIOS', CURRENT_TIMESTAMP AT TIME ZONE 'America/Guayaquil')
+        `, [id])
+        console.log(response)
+        res.json(`Data inserted in AUDITORIA successfully`)
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}
+
 module.exports = {
-    getAllAudit
+    getAllAudit,
+    createDeleteOfProduct
 }

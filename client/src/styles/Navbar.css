@@ -1,0 +1,16 @@
+#NavBar {
+    background-color: #2a4b64 !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+    
+#titleNavbar{
+    color: white ;
+}
+
+#btnVerListaProductos{
+    background-color: #cab188;
+}
+
+.btn{
+    color: white
+}

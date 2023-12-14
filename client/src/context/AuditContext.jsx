@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { getDataAuditRequest } from '../api/audit'
+import { getDataAuditRequest, createDeleteOfProductRequest } from '../api/audit'
 
 const AuditContext = createContext()
 
@@ -19,17 +19,27 @@ export function AuditProvider({ children }) {
         try {
             const res = await getDataAuditRequest()
             setDataAudit(res.data)
-            console.log(res.data)
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const createInserOfDelete = async (usu_id) => {
+        try {
+            const res = await createDeleteOfProductRequest(usu_id)
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    
     }
 
     return (
         <AuditContext.Provider
             value={{
                 dataAudit,
-                getDataAudit
+                getDataAudit,
+                createInserOfDelete
             }}
         >
             {children}

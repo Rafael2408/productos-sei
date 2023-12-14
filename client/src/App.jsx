@@ -15,6 +15,7 @@ import AuditorPage from './pages/role_pages/AuditorPage'
 import OperadorPage from './pages/role_pages/OperadorPage'
 import { ProductProvider } from './context/ProductContext'
 import { AuditProvider } from './context/AuditContext'
+import Navbar from './components/Navbar'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <ProductProvider>
         <AuditProvider>
           <BrowserRouter>
+          <Navbar/>
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/login' element={<LoginPage />} />
