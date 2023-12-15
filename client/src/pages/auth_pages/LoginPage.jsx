@@ -20,8 +20,8 @@ function LoginPage() {
   const {signin, errors: signinErrors, user, isAuthenticated} = useAuth();
   const navigate = useNavigate();
 
-  function handleRoleNavigation(usu_rol) {
-    switch (usu_rol) {
+  function handleRoleNavigation(rol) {
+    switch (rol) {
       case 1:
         navigate('/admin')
         break;
@@ -42,7 +42,8 @@ function LoginPage() {
 
   useEffect(() => {
     if(isAuthenticated && user){
-      handleRoleNavigation(user.rol)
+      if(user.rol_id)handleRoleNavigation(user.rol_id)
+      else handleRoleNavigation(user.rol)
     }
   }, [isAuthenticated, user])
 

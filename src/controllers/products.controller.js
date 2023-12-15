@@ -19,7 +19,7 @@ const getProductById = async (req, res) => {
         const response = await pool.query(`SELECT * FROM productos WHERE pro_id = $1`, [id])
         res.json(response.rows[0])
     } catch (error) {
-        res.status(500).json({ message: error.message })
+        res.status(404).json({ message: "Product not found" })
     }
 }
 
@@ -53,7 +53,18 @@ const deleteProduct = async (req, res) => {
 }
 
 const updateProduct = async (req, res) => {
-    res.send("updating a product");
+    try {
+        const { id } = req.params
+        const { pro_nombre, pro_descripcion, pro_precio, pro_cantidad, usu_id, cat_id } = req.body
+        await pool.query(`
+            UPDATE public.productos
+            SET pro_nombre=$1, pro_descripcion=$2, pro_precio=$3, pro_cantidad=$4, usu_id=$5, cat_id=$6
+            WHERE pro_id=$7;
+        `, [pro_nombre, pro_descripcion, pro_precio, pro_cantidad, usu_id, cat_id, id])
+        res.json(`Producto ${id} actualizado exitosamente`)
+    } catch (error) {
+        res.json(`Error: ${error.message}`)
+    }
 }
 
 module.exports = { 

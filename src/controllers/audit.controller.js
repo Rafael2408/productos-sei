@@ -6,7 +6,6 @@ const getAllAudit = async ( req, res ) => {
         SELECT a.aud_id, u.usu_nombre, a.aud_accion, a.aud_tabla , a.aud_fecha
         FROM auditoria a, usuarios u
         WHERE a.usu_id = u.usu_id`)
-        console.log(response.rows)
         res.json(response.rows)
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -20,7 +19,6 @@ const createDeleteOfProduct = async (req, res) => {
             INSERT INTO auditoria(usu_id, aud_accion, aud_tabla, aud_fecha)
             VALUES($1, 'DELETE', 'USUARIOS', CURRENT_TIMESTAMP AT TIME ZONE 'America/Guayaquil')
         `, [id])
-        console.log(response)
         res.json(`Data inserted in AUDITORIA successfully`)
     } catch (error) {
         res.status(500).json({ message: error.message })

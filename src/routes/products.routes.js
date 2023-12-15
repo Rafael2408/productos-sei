@@ -20,6 +20,6 @@ router.post('/products', authRequired, validateSchema(createProductSchema), crea
 
 router.delete('/products/:id', authRequired, deleteProduct);
 
-router.put('/products', authRequired, updateProduct);
+router.put('/products/:id', authRequired, updateProduct);
 
 module.exports = router;

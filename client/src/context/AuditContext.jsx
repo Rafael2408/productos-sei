@@ -27,7 +27,6 @@ export function AuditProvider({ children }) {
     const createInserOfDelete = async (usu_id) => {
         try {
             const res = await createDeleteOfProductRequest(usu_id)
-            console.log(res)
         } catch (error) {
             console.log(error)
         }

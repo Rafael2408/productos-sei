@@ -34,8 +34,9 @@ function App() {
 
               <Route element={<ProtectedRoute />}>
                 <Route path='/products' element={<ProductsPage />} />
-                <Route path='/add-product' element={<ProductFormPage />} />
                 <Route path='/products/:id' element={<ProductFormPage />} />
+
+                <Route path='/add-product' element={<ProductFormPage />} />
                 <Route path='/profile' element={<ProfilePage />} />
 
                 <Route path='/admin' element={<AdminPage />} />

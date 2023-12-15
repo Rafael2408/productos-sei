@@ -3,7 +3,7 @@ import ProductsPage from "../ProductsPage"
 function AdminPage() {
   return (
     <>
-      <div>AdminPage</div>
+      <div>Página de Administrador</div>
       <ProductsPage/>
     </>
   )
