@@ -6,7 +6,7 @@ function OperadorPage() {
 
   return (
     <>
-      <div>Página de Operador</div>
+      <h1>Página de Operador</h1>
       <ProductsPage />
     </>
   )

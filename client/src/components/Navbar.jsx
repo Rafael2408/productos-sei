@@ -9,7 +9,7 @@ function Navbar() {
     const [role, setRole] = useState(null);
 
     useEffect(() => {
-        if (user) setRole(user.rol);
+        if (user) setRole(user.rol_id);
     }, [user, isAuthenticated])
 
     if (loading) {

@@ -14,14 +14,15 @@ function ProductsPage() {
   const { user } = useAuth()
   const { createInserOfDelete } = useAudit()
   function checkUser(rol){
+    console.log(rol, 'asdsasdas------------------')
     switch(rol){
       case 1: navigate('/admin');
         break;
       case 2: navigate('/operador')
         break;
-      case 2: navigate('/auditor')
+      case 3: navigate('/auditor')
         break;
-      case 2: navigate('/products')
+      case 4: navigate('/products')
         break;
       default: navigate('/')
     }
@@ -29,8 +30,10 @@ function ProductsPage() {
 
   useEffect(() => {
     getProducts()
-    checkUser(user.rol_id)
-  }, [])
+    if (user) {
+      checkUser(user.rol_id)
+    }
+  }, [user])
 
   return (
     <>

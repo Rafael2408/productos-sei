@@ -20,37 +20,32 @@ function LoginPage() {
   const {signin, errors: signinErrors, user, isAuthenticated} = useAuth();
   const navigate = useNavigate();
 
-  function handleRoleNavigation(rol) {
-    switch (rol) {
-      case 1:
-        navigate('/admin')
-        break;
-      case 2:
-        navigate('/operador')
-        break;
-      case 3:
-        navigate('/auditor')
-        break;
-      case 4:
-        navigate('/products')
-        break;
-      default:
-        // Maneja cualquier otro caso
-        break;
-    }
-  }
-
   useEffect(() => {
-    if(isAuthenticated && user){
-      if(user.rol_id)handleRoleNavigation(user.rol_id)
-      else handleRoleNavigation(user.rol)
+    if (isAuthenticated) {
+      switch (user.rol_id) {
+        case 1:
+          navigate('/admin');
+          break;
+        case 2:
+          navigate('/operador');
+          break;
+        case 3:
+          navigate('/auditor');
+          break;
+        case 4:
+          navigate('/products');
+          break;
+        default:
+          // Maneja cualquier otro caso
+          break;
+      }
     }
-  }, [isAuthenticated, user])
+  }, [isAuthenticated, user]);
 
 
   const onSubmit = handleSubmit((data) => {
     if(captchaValue){
-      signin(data);
+      signin(data, navigate);
     }
     else{
       alert('Por favor confirma que no eres un robot')

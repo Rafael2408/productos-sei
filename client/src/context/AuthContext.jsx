@@ -1,8 +1,8 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { registerRequest, loginRequest, emailRequest, validateShemaRegister, checkEmail, verifyTokenRequest } from '../api/auth'
 import Cookies from 'js-cookie'
-
 export const AuthContext = createContext();
+
 
 export const useAuth = () => {
     const context = useContext(AuthContext)
@@ -29,12 +29,35 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-    const signin = async (user) => {
+    const signin = async (user, navigate) => {
         try {
             const res = await loginRequest(user)
-            console.log(res)
+            const newUser = {
+                usu_id: res.data.id,
+                usu_nombre: res.data.nombre,
+                usu_correo: res.data.correo,
+                rol_id: res.data.rol
+            }
             setIsAuthenticated(true)
-            setUser(res.data)
+            setUser(newUser)
+            console.log(res.data)
+            switch (res.data.rol) {
+                case 1:
+                    navigate('/admin');
+                    break;
+                case 2:
+                    navigate('/operador');
+                    break;
+                case 3:
+                    navigate('/auditor');
+                    break;
+                case 4:
+                    navigate('/products');
+                    break;
+                default:
+                    // Maneja cualquier otro caso
+                    break;
+            }
         } catch (error) {
             console.log(error)
             setErrors(error.response.data)
