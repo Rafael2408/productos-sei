@@ -31,15 +31,21 @@ function Navbar() {
                                 {(role !== 3) && (
                                     <>
                                         <li className="nav-item">
-                                            <Link className="nav-link btn" to="/products" id='btnVerListaProductos'>Ver Lista de Productos</Link>
+                                            <Link className="nav-link btn" to="/products" id='btnVerListaProductos'>
+                                                <i className="fas fa-list"></i> Ver Lista de Productos
+                                            </Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link className="nav-link btn btn-info" to="/add-product" >Agregar un Producto</Link>
+                                            <Link className="nav-link btn btn-info" to="/add-product" >
+                                                <i className="fas fa-plus"></i> Agregar un Producto
+                                            </Link>
                                         </li>
                                     </>
                                 )}
                                 <li className="nav-item">
-                                    <Link className="nav-link btn btn-danger" to="/" onClick={() => { logout() }} >Cerrar Sesión</Link>
+                                    <Link className="nav-link btn btn-danger" to="/" onClick={() => { logout() }} >
+                                        <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -52,10 +58,14 @@ function Navbar() {
                         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                             <ul className="navbar-nav">
                                 <li className="nav-item">
-                                    <Link className="nav-link btn btn-info" to="/login">Iniciar Sesión</Link>
+                                    <Link className="nav-link btn btn-info" to="/login">
+                                        <i className="fas fa-sign-in-alt"></i> Iniciar Sesión
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="btn btn-success nav-link" to="/register">Registrarse</Link>
+                                    <Link className="btn btn-success nav-link" to="/register">
+                                        <i className="fas fa-user-plus"></i> Registrarse
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

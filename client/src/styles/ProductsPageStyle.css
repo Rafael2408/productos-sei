@@ -1,3 +1,20 @@
+#centrarDiv{
+    height: 100vh !important;
+    padding: 20px;
+}
+
+#btnComprar{
+    background-color: rgb(152, 228, 203);
+    color: black;
+}
+
+.inputAndBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 table {
     border: 1px solid #ccc;
     border-collapse: collapse;

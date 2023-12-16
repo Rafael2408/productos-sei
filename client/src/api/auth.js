@@ -15,8 +15,9 @@ export const checkEmail = async (email) => {
         if (response.status === 200) {
             return('El correo está disponible');
         }
+        else if (response.status === 204)return ('El correo ya se encuentra registrado')
     } catch (error) {
-        if (error.response && error.response.status === 400) {
+        if (error.response && error.response.status === 204) {
             return('El correo ya se encuentra registrado');
         }
     }

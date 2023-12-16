@@ -1,0 +1,11 @@
+.row{
+    height: 100vh;
+}
+
+#sidebarMenu .nav-item {
+    margin: 0 !important;
+    /* Esto eliminará cualquier margen alrededor de los elementos de la lista */
+    padding: 0 !important;
+    /* Esto eliminará cualquier relleno alrededor de los elementos de la lista */
+    background-color: black;
+}

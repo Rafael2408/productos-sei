@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { getProductsRequest, getProductRequest, createProductRequest, deleteProductRequest, updateProductRequest } from '../api/product'
+import { getProductsRequest, getProductRequest, createProductRequest, deleteProductRequest, updateProductRequest, getProductsPurchasedRequest, getProductPurchasedByIdRequest, createProductPurchasedRequest, updateStockRequest } from '../api/product'
 
 const ProductContext = createContext()
 
@@ -14,6 +14,7 @@ export const useProducts = () => {
 
 export function ProductProvider({ children }) {
     const [products, setProducts] = useState([])
+    const [productsPurchased, setProductsPurchased] = useState([])
 
     const getProducts = async () => {
         try {
@@ -23,7 +24,6 @@ export function ProductProvider({ children }) {
             console.log(error)
         }
     }
-
     const getProductById = async (id) => {
         try {
             const res = await getProductRequest(id)
@@ -32,12 +32,14 @@ export function ProductProvider({ children }) {
             console.log(error)
         }
     }
-
     const createProduct = async (product) => {
-        const res = await createProductRequest(product)
-        console.log(res)
+        try {
+            const res = await createProductRequest(product)
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
     }
-
     const deleteProduct = async (id) => {
         try {
             const res = await deleteProductRequest(id)
@@ -49,7 +51,6 @@ export function ProductProvider({ children }) {
             console.log(error)
         }
     }
-
     const updateProduct = async (product) => {
         try {
             const res = await updateProductRequest(product)
@@ -58,6 +59,35 @@ export function ProductProvider({ children }) {
         }
     }
 
+    const getProductsPurchased = async () => {
+        try {
+            const res = await getProductsPurchasedRequest()
+            setProductsPurchased(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getProductPurchasedById = async (id) =>{
+        try {
+            const res = await getProductPurchasedByIdRequest(id)
+            setProductsPurchased(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const createProductPurchased = async (productPurchased) =>{
+        try {
+            productPurchased.prodcom_cantidad = Number(productPurchased.prodcom_cantidad);
+            await createProductPurchasedRequest(productPurchased)
+            console.log(productPurchased)
+            const resp = await updateStockRequest(productPurchased)
+            console.log(resp)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <ProductContext.Provider
@@ -67,7 +97,10 @@ export function ProductProvider({ children }) {
                 getProducts,
                 getProductById,
                 deleteProduct,
-                updateProduct
+                updateProduct,
+                getProductsPurchased,
+                getProductPurchasedById,
+                createProductPurchased,  
             }}
         >
             {children}

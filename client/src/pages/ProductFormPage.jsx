@@ -39,7 +39,6 @@ function ProductFormPage() {
       cat_id: parseFloat(cat_id),
       usu_id: user.user_id
     }
-    console.log(product)
     if(params.id){
       product.pro_id = params.id
       updateProduct(product, params.id)

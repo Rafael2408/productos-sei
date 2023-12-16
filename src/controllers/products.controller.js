@@ -67,10 +67,71 @@ const updateProduct = async (req, res) => {
     }
 }
 
+
+
+
+
+
+
+const getProductsPurchased = async (req, res) => {
+    try {
+        const response = await pool.query('SELECT * FROM productos_comprados');
+        res.status(200).json(response.rows);
+    } catch (error) {
+        res.json(error.message)
+    }
+}
+
+const getProductPurchasedById = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const response = await pool.query('SELECT * FROM productos_comprados WHERE id = $1', [id]);
+        res.json(response.rows);
+    } catch (error) {
+        res.json(error.message)
+    }
+}
+
+const createProductPurchased = async (req, res) => {
+    try {
+        const { usu_id, pro_id, prodcom_cantidad } = req.body;
+        const response = await pool.query(`
+            INSERT INTO productos_comprados(
+            usu_id, pro_id, prodcom_cantidad, prodcom_fecha)
+            VALUES ($1, $2, $3, NOW());
+        `, [usu_id, pro_id, prodcom_cantidad]);
+        res.json({
+            message: 'Product Purchased created successfully',
+            body: {
+                product_purchased: response.rows[0]
+            }
+        })
+    } catch (error) {
+        res.json(error.message)
+    }
+}
+
+const updateProductStock = async (req, res) => {
+    try {
+        const { pro_id, prodcom_cantidad } = req.body;
+        const response = await pool.query(`
+            UPDATE productos SET pro_cantidad = pro_cantidad - $1 WHERE pro_id = $2;
+        `, [prodcom_cantidad, pro_id]);
+        res.json('Product Stock Updated Successfully');
+    } catch (error) {
+        res.json(error.message)
+    }
+}
+
 module.exports = { 
     getAllProducts,
     getProductById,
     createProduct,
     deleteProduct,
-    updateProduct
+    updateProduct,
+
+    getProductsPurchased,
+    getProductPurchasedById,
+    createProductPurchased,
+    updateProductStock
 };

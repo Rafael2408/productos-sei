@@ -27,6 +27,8 @@ function AuditorUsersPage() {
     // Tomar solo los primeros 5 usuarios
     const topUsers = sortedUsers.slice(0, 5);
 
+    useEffect(() => { console.log(dataAudit) }, [dataAudit])
+
     const totalActions = dataAudit.length;
 
     return (

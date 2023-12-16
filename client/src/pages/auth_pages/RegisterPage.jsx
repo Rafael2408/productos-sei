@@ -21,11 +21,9 @@ function RegisterPage() {
 
     const onSubmit = handleSubmit(async (values) => {
         await checkingEmail(values.usu_correo)
-        console.log(emailMessage)
+        if(emailMessage !== 'El correo está disponible') return alert('El correo ya está registrado')
         await emailConfirmation(values)
         navigate('/confirmation-code')
-        // const res = await validateSchema(values)
-        // console.log(res)
     })
 
     return (
