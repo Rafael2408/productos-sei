@@ -8,34 +8,34 @@ function HomePage() {
   return (
     <>
       <div>
-        <div id="carouselExampleDark" class="carousel carousel-dark slide">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <div id="carouselExampleDark" className="carousel carousel-dark slide">
+          <div className="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-              <img src={img1} class="d-block w-100" alt="..." />
-              <div class="carousel-caption d-none d-md-block">
+          <div className="carousel-inner">
+            <div className="carousel-item active" data-bs-interval="10000">
+              <img src={img1} className="d-block w-100" alt="..." />
+              <div className="carousel-caption d-none d-md-block">
                 <img className='logo' src={logo} alt="Logo_Universidad" />
                 <h1 className='titulo_home'>Universidad Técnica del Norte</h1>
                 <h2 className='subtitulo_home'>Seguridad informatica</h2>
                 <h3 className='texto_home'>Seguridad implementada a un aplicativo de venta de productos (CRUD)</h3>
               </div>
             </div>
-            <div class="carousel-item" data-bs-interval="2000">
-              <img src={img2} class="d-block w-100" alt="..." />
-              <div class="carousel-caption d-none d-md-block">
+            <div className="carousel-item" data-bs-interval="2000">
+              <img src={img2} className="d-block w-100" alt="..." />
+              <div className="carousel-caption d-none d-md-block">
                 <img className='logo' src={logo} alt="Logo_Universidad" />
                 <h1 className='titulo_home'>Encuentra las frutas más frescas</h1>
                 <h2 className='subtitulo_home'>Descuento en frutos rojos</h2>
                 <h3 className='texto_home'>Aplica tus cupones de descuento</h3>
               </div>
             </div>
-            <div class="carousel-item">
-              <img src={img3} class="d-block w-100" alt="..." />
-              <div class="carousel-caption d-none d-md-block">
+            <div className="carousel-item">
+              <img src={img3} className="d-block w-100" alt="..." />
+              <div className="carousel-caption d-none d-md-block">
                 <img className='logo' src={logo} alt="Logo_Universidad" />
                 <h1 className='titulo_home'>Descuento en productos de canasta básica</h1>
                 <h2 className='subtitulo_home'>Descubre lo que nececsitas</h2>
@@ -43,13 +43,13 @@ function HomePage() {
               </div>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+          <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="visually-hidden">Next</span>
           </button>
         </div>
         <div className='integrantes'>
