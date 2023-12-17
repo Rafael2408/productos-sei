@@ -1,39 +1,48 @@
 /* HomePage.css */
-
 .contenido {
     text-align: center;
     padding: 30px;
 }
 
-img {
-    border: 2px solid #808080;
+.logo {
     float: left;
-    margin-bottom: 30px;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 5));
 }
 
-h1 {
-    color: #ff0000;
+.titulo_home {
+    color: #d22121;
     clear: both;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-top: 40px;
+    text-shadow: 2px 2px 4px rgba(1, 0, 0, 20);
     margin-bottom: 40px;
-    font-size: 50px;
+    font-size: 60px;
 }
 
-h2 {
-    color: #808080;
+.subtitulo_home {
+    color: #d9ff00;
     font-family: sans-serif;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(1, 0, 0, 20);
 }
 
-h3 {
+.subtitulo_home2 {
+    margin-bottom: 50px;
+    text-align: center;
     color: #000000;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(1, 0, 0, 20);
+}
+
+
+.texto_home {
+    color: #ffffff;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-weight: bold;
     margin-bottom: 60px;
+    margin-top: 40px;
+    text-shadow: 2px 2px 4px rgba(1, 0, 0, 20);
 }
 
 .integrantes {
@@ -41,10 +50,44 @@ h3 {
     font-family: 'Arial', sans-serif;
     font-weight: normal;
     color: #000000;
-    margin-bottom: 8px;
+    padding-bottom: 8px;
     -webkit-text-stroke: 0.3px rgb(89, 88, 88);
-    padding: 20px 0px 40px 40px;
+    padding: 20px 0px 40px 100px;
     background-color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 5);
 }
 
-/* Puedes aplicar colores similares a h2, h3, h4 si es necesario */
+.integrantes h4{
+    padding-top: 20px;
+}
+.footer_home {
+    padding: 20px;
+    text-align: end;
+    font-family: 'Courier New', Courier, monospace;
+    /* Fuente monoespaciada, como la de consolas */
+    font-size: 14px;
+    /* Tamaño de fuente */
+    font-weight: bold;
+    /* Grosor de la fuente */
+    letter-spacing: 0.5px;
+    /* Espaciado entre letras */
+    color: #000000;
+    /* Color del texto */
+    background-color: #544c4c;
+    /* Color de fondo */
+}
+
+.circular{
+    border-radius: 100px;
+    width: 300px;
+    height: 300px;
+}
+
+.img_circulo{
+    margin-right: 100px;
+}
+
+.subcontenedor{
+    display: flex;
+    justify-content: space-between;
+}
