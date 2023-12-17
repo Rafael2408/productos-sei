@@ -1,5 +1,13 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { registerRequest, loginRequest, emailRequest, validateShemaRegister, checkEmail, verifyTokenRequest } from '../api/auth'
+import { registerRequest, 
+    loginRequest, 
+    emailRequest, 
+    validateShemaRegister, 
+    checkEmail, 
+    verifyTokenRequest 
+} from '../api/auth'
+import { getUsersRequest } from '../api/users'
+
 import Cookies from 'js-cookie'
 export const AuthContext = createContext();
 
@@ -18,6 +26,7 @@ export const AuthProvider = ({ children }) => {
     const [emailMessage, setEmailMessage] = useState(null);
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(true)
+    const [users, setUsers] = useState([])
 
     const signup = async (user) => {
         try {
@@ -40,7 +49,6 @@ export const AuthProvider = ({ children }) => {
             }
             setIsAuthenticated(true)
             setUser(newUser)
-            console.log(res.data)
             switch (res.data.rol) {
                 case 1:
                     navigate('/admin');
@@ -139,6 +147,16 @@ export const AuthProvider = ({ children }) => {
         checkLogin()
     }, [])
 
+    const getUsers = async () => {
+        try {
+            const res = await getUsersRequest()
+            setUsers(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
     return (
         <AuthContext.Provider value={{
             validateSchema,
@@ -151,7 +169,9 @@ export const AuthProvider = ({ children }) => {
             errors,
             user,
             isAuthenticated,
-            emailMessage
+            emailMessage,
+            getUsers,
+            users
         }}>{children}</AuthContext.Provider>
     )
 }

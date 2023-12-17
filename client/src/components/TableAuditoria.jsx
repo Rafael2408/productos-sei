@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useAudit } from "../context/AuditContext"
 
 function TableAuditoria() {
@@ -9,8 +9,8 @@ function TableAuditoria() {
     }, [])
 
     return (
-        <div>
-            <h2>Registros de la tabla Auditoría</h2>
+        <div className='p-3'>
+            <h2 className='text-center'>Reporte de Todas las Acciones Registradas</h2>
             <table className="table table-bordered">
                 <thead>
                     <tr>

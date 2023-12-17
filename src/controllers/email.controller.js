@@ -9,7 +9,7 @@ exports.sendConfirmationEmail = function (userEmail) {
         service: 'gmail',
         auth: {
             user: 'correos.seguridad2024@gmail.com',
-            pass: 'suau rnin kcvf sltm'
+            pass: 'suau rnin kcvf sltm' //clave de aplicación de terceros
         }
     });
 

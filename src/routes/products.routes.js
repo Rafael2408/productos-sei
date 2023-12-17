@@ -26,9 +26,9 @@ router.delete('/products/:id', authRequired, deleteProduct);
 router.put('/products/:id', authRequired, validateSchema(createProductSchema),updateProduct);
 router.put('/products-stock/:id', authRequired, updateProductStock);
 
-router.get('/products-purchased', getProductsPurchased);
+router.get('/products-purchased', authRequired, getProductsPurchased);
 router.get('/products-purchased/:id', authRequired, getProductPurchasedById);
-router.post('/products-purchased', createProductPurchased);
+router.post('/products-purchased', authRequired, createProductPurchased);
 router.put('/products-purchased', authRequired, updateProductStock)
 
 module.exports = router;

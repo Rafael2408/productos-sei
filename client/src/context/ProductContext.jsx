@@ -98,9 +98,11 @@ export function ProductProvider({ children }) {
                 getProductById,
                 deleteProduct,
                 updateProduct,
+                
                 getProductsPurchased,
                 getProductPurchasedById,
-                createProductPurchased,  
+                createProductPurchased, 
+                productsPurchased 
             }}
         >
             {children}

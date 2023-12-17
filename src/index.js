@@ -9,6 +9,8 @@ const productRoutes = require('./routes/products.routes');
 
 const auditRoutes = require('./routes/audit.routes.js');
 
+const userRoutes = require('./routes/users.routes.js')
+
 const app = express();
 
 app.use(cors({
@@ -23,7 +25,9 @@ app.use('/api',productRoutes);
 app.use('/api', auditRoutes);
 
 app.use('/api',authRoutes);
-app.use('/api/', emailRoutes)
+app.use('/api', emailRoutes)
+
+app.use('/api', userRoutes);
 
 app.listen(4000)
 console.log('Server on port', 4000)

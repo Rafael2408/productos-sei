@@ -42,12 +42,12 @@ const createProduct = async (req, res) => {
 }
 
 const deleteProduct = async (req, res) => {
-    try{
+    try {
         const { id } = req.params
         await pool.query(`DELETE FROM productos WHERE pro_id = $1`, [id])
         res.json(`Producto ${id} eliminado exitosamente`)
 
-    }catch (error) {
+    } catch (error) {
         res.status(500).json({ message: error.message })
     }
 }
@@ -71,11 +71,13 @@ const updateProduct = async (req, res) => {
 
 
 
-
-
 const getProductsPurchased = async (req, res) => {
     try {
-        const response = await pool.query('SELECT * FROM productos_comprados');
+        const response = await pool.query(`
+            SELECT u.usu_nombre, p.pro_nombre, prodcom_cantidad, p.pro_descripcion, prodcom_fecha
+            FROM productos_comprados pc, usuarios u, productos p
+            WHERE u.usu_id = pc.usu_id AND p.pro_id = pc.pro_id
+        `);
         res.status(200).json(response.rows);
     } catch (error) {
         res.json(error.message)
@@ -123,7 +125,7 @@ const updateProductStock = async (req, res) => {
     }
 }
 
-module.exports = { 
+module.exports = {
     getAllProducts,
     getProductById,
     createProduct,

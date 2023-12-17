@@ -18,7 +18,6 @@ function ProductsPage() {
   } = useProducts()
 
   const { user } = useAuth()
-  const { createInserOfDelete } = useAudit()
 
   function checkUser(rol) {
     switch (rol) {
@@ -40,12 +39,11 @@ function ProductsPage() {
 
   const handleBuy = async (product) => {
     setLoading(true)
-    console.log(user)
     const productQuantity = quantity[product.pro_id] || 1
     if (productQuantity > product.pro_cantidad) {
       alert('No puedes comprar más productos de los disponibles')
     } else {
-      await createProductPurchased({ ...product, prodcom_cantidad: productQuantity, usu_id: user.user_id })
+      await createProductPurchased({ ...product, prodcom_cantidad: productQuantity, usu_id: user.usu_id })
       await getProducts()
     }
     setLoading(false)
@@ -61,7 +59,7 @@ function ProductsPage() {
   return (
     <>
       <div id='centrarDiv' className=" text-white">
-        <h1>Lista de Productos</h1>
+        <h2>Lista de Productos</h2>
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {Array.isArray(products) && products.map((product) =>
             <div key={product.pro_id} className="col">
