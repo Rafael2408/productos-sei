@@ -37,6 +37,7 @@ function AuditorGraphics() {
         {!loading && tables.map((table, i) => (
           <div key={i}>
             <h3 className="text-center">{table}</h3>
+            <h4>Total de acciones: {data[i].reduce((total, item) => total + item[table], 0)}</h4> {/* Línea agregada */}
             <LineChart width={850} height={500} data={data[i]}>
               <CartesianGrid strokeDasharray="3 3" stroke="#ccc" fill="#fff" />
               <XAxis dataKey="name" stroke="#fff" />

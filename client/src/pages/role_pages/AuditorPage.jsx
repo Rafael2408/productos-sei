@@ -11,7 +11,7 @@ import AuditorGraphics from '../../components/AuditorGraphics.jsx';
 
 function AuditorPage() {
   const { dataAudit, getDataAudit } = useAudit()
-  const [selectedAnalysis, setSelectedAnalysis] = useState('');
+  const [selectedAnalysis, setSelectedAnalysis] = useState('all'); // Cambiado aquí
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -41,6 +41,7 @@ function AuditorPage() {
   return (
     <div className="dashboard">
       <div className="sidebar">
+        <h5 className="text-center p-3">Opciones de Auditor</h5>
         <button onClick={() => setSelectedAnalysis('all')}>Todos los Registros</button>
         <button onClick={() => setSelectedAnalysis('graphics')}>Gráficas en Acciones/Tiempo</button>
         <button onClick={() => setSelectedAnalysis('acciones')}>Análisis de Acciones de Auditoría</button>
@@ -52,7 +53,7 @@ function AuditorPage() {
       </div>
     </div>
   )
-  
+
 }
 
 export default AuditorPage;
