@@ -64,17 +64,11 @@
     padding: 20px;
     text-align: end;
     font-family: 'Courier New', Courier, monospace;
-    /* Fuente monoespaciada, como la de consolas */
     font-size: 14px;
-    /* Tamaño de fuente */
     font-weight: bold;
-    /* Grosor de la fuente */
     letter-spacing: 0.5px;
-    /* Espaciado entre letras */
     color: #000000;
-    /* Color del texto */
     background-color: #544c4c;
-    /* Color de fondo */
 }
 
 .circular{
@@ -91,3 +85,4 @@
     display: flex;
     justify-content: space-between;
 }
+
