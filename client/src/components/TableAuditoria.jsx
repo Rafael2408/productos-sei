@@ -11,7 +11,7 @@ function TableAuditoria() {
     return (
         <div className='p-3'>
             <h2 className='text-center'>Reporte de Todas las Acciones Registradas</h2>
-            <table className="table table-bordered">
+            <table className="table table-bordered" style={{ tableLayout: 'auto' }}>
                 <thead>
                     <tr>
                         <th></th>

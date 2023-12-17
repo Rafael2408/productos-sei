@@ -87,7 +87,12 @@ const getProductsPurchased = async (req, res) => {
 const getProductPurchasedById = async (req, res) => {
     try {
         const id = req.params.id;
-        const response = await pool.query('SELECT * FROM productos_comprados WHERE id = $1', [id]);
+        const response = await pool.query(`
+            SELECT p.pro_nombre, pc.prodcom_cantidad, pc.prodcom_fecha 
+            FROM productos_comprados pc, productos p, usuarios u
+            WHERE p.pro_id = pc.pro_id AND u.usu_id = pc.usu_id 
+            AND pc.usu_id = $1;
+        `, [id]);
         res.json(response.rows);
     } catch (error) {
         res.json(error.message)

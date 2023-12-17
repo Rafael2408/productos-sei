@@ -68,7 +68,7 @@ export function ProductProvider({ children }) {
         }
     }
 
-    const getProductPurchasedById = async (id) =>{
+    const getProductsPurchasedById = async (id) =>{
         try {
             const res = await getProductPurchasedByIdRequest(id)
             setProductsPurchased(res.data)
@@ -81,9 +81,7 @@ export function ProductProvider({ children }) {
         try {
             productPurchased.prodcom_cantidad = Number(productPurchased.prodcom_cantidad);
             await createProductPurchasedRequest(productPurchased)
-            console.log(productPurchased)
             const resp = await updateStockRequest(productPurchased)
-            console.log(resp)
         } catch (error) {
             console.log(error)
         }
@@ -100,7 +98,7 @@ export function ProductProvider({ children }) {
                 updateProduct,
                 
                 getProductsPurchased,
-                getProductPurchasedById,
+                getProductsPurchasedById,
                 createProductPurchased, 
                 productsPurchased 
             }}

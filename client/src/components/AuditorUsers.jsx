@@ -27,41 +27,41 @@ function AuditorUsersPage() {
     // Tomar solo los primeros 5 usuarios
     const topUsers = sortedUsers.slice(0, 5);
 
-    useEffect(() => { console.log(dataAudit) }, [dataAudit])
-
     const totalActions = dataAudit.length;
 
     return (
         <>
-            <h2>Top 5 Usuarios con Más Acciones Registradas</h2>
-            <h3>Total de acciones: {totalActions}</h3>
-            <div id='centrarDiv' className={loading ? 'spin' : ''}>
-                {!loading && (
-                    <PieChart width={550} height={550}>
-                        <Pie
-                            data={topUsers}
-                            cx={250}
-                            cy={250}
-                            labelLine={false}
-                            outerRadius={180}
-                            fill="#8884d8"
-                            dataKey="value"
-                            label={({ name, value }) => `${name}: ${value}`}
-                        >
-                            {
-                                topUsers.map((entry, index) => <Cell key={`cell-${index}`} fill={[
-                                    'rgb(255, 182, 193)',
-                                    'rgb(240, 230, 140)',
-                                    'rgb(152, 251, 152)',
-                                    'rgb(135, 206, 235)',
-                                    'rgb(221, 160, 221)'
-                                ][index % 5]} />)
-                            }
-                        </Pie>
-                        <Tooltip />
-                        <Legend />
-                    </PieChart>
-                )}
+            <div className='p-3'>
+                <h2 className='text-center'>Top 5 Usuarios con Más Acciones Registradas</h2>
+                <h3 className='text-center'>Total de acciones: {totalActions}</h3>
+                <div id='centrarDiv' className={loading ? 'spin' : ''}>
+                    {!loading && (
+                        <PieChart width={600} height={500}>
+                            <Pie
+                                data={topUsers}
+                                cx={300}
+                                cy={250}
+                                labelLine={false}
+                                outerRadius={180}
+                                fill="#8884d8"
+                                dataKey="value"
+                                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                            >
+                                {
+                                    topUsers.map((entry, index) => <Cell key={`cell-${index}`} fill={[
+                                        'rgb(255, 182, 193)',
+                                        'rgb(240, 230, 140)',
+                                        'rgb(152, 251, 152)',
+                                        'rgb(135, 206, 235)',
+                                        'rgb(221, 160, 221)'
+                                    ][index % 5]} />)
+                                }
+                            </Pie>
+                            <Tooltip />
+                            <Legend />
+                        </PieChart>
+                    )}
+                </div>
             </div>
         </>
     )

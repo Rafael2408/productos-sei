@@ -30,29 +30,31 @@ function AuditorThreeTables() {
 
     return (
         <>
-            <h2>Análisis de Acciones por Tabla</h2>
-            <h3>Total de acciones: {totalActions}</h3>
-            <div id='centrarDiv' className={loading ? 'spin' : ''}>
-                {!loading && (
-                    <PieChart width={850} height={500}>
-                        <Pie
-                            data={data}
-                            cx={400}
-                            cy={250}
-                            labelLine={false}
-                            outerRadius={180}
-                            fill="#8884d8"
-                            dataKey="value"
-                            label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                        >
-                            {
-                                data.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)
-                            }
-                        </Pie>
-                        <Tooltip />
-                        <Legend layout="horizontal" verticalAlign="bottom" align="center" />
-                    </PieChart>
-                )}
+            <div className="p-3">
+                <h2 className="text-center">Análisis de Acciones por Tabla</h2>
+                <h3 className="text-center">Total de acciones: {totalActions}</h3>
+                <div id='centrarDiv' className={loading ? 'spin' : ''}>
+                    {!loading && (
+                        <PieChart width={850} height={500}>
+                            <Pie
+                                data={data}
+                                cx={400}
+                                cy={200}
+                                labelLine={false}
+                                outerRadius={180}
+                                fill="#8884d8"
+                                dataKey="value"
+                                label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                            >
+                                {
+                                    data.map((entry, index) => <Cell key={`cell-${index}`} fill={entry.color} />)
+                                }
+                            </Pie>
+                            <Tooltip />
+                            <Legend layout="horizontal" verticalAlign="bottom" align="center" />
+                        </PieChart>
+                    )}
+                </div>
             </div>
         </>
     );

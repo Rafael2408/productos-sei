@@ -37,7 +37,7 @@ function ProductFormPage() {
       pro_precio: parseFloat(pro_precio),
       pro_cantidad: parseFloat(pro_cantidad),
       cat_id: parseFloat(cat_id),
-      usu_id: user.user_id
+      usu_id: user.usu_id
     }
     if(params.id){
       product.pro_id = params.id

@@ -6,8 +6,10 @@ function OperadorPage() {
 
   return (
     <>
-      <h1>Página de Operador</h1>
-      <ProductsPage />
+      <div className='p-3'>
+        <h1 className='text-center'>Página de Operador</h1>
+        <ProductsPage />
+      </div>
     </>
   )
 }

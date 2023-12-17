@@ -11,6 +11,11 @@
     border-radius: 10px;
 }
 
+#registerForm .inputs {
+    width: 100%;
+}
+
+
 #confirmationForm{
     background-color: #44576D;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -29,7 +34,7 @@
 }
 
 #confirmationForm form{
-    width: 90%;
+    width: 100%;
 }
 
 #confirmationForm h2, button{
@@ -67,9 +72,14 @@ button{
 }
 
 .inputs{
-    width: 108%;
+    width: 107% !important;
 }
 
 #btnSubmit{
+    margin-top: 10px;
+    width: 107%;
+}
+
+.inputRegister{
     width: 107%;
 }

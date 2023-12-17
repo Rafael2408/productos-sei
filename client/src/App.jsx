@@ -16,6 +16,7 @@ import OperadorPage from './pages/role_pages/OperadorPage'
 import { ProductProvider } from './context/ProductContext'
 import { AuditProvider } from './context/AuditContext'
 import Navbar from './components/Navbar'
+import UserPage from './pages/role_pages/UserPage'
 
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
                 <Route path='/admin' element={<AdminPage />} />
                 <Route path='/auditor' element={<AuditorPage />} />
                 <Route path='/operador' element={<OperadorPage />} />
+                <Route path='/user' element={<UserPage />} />
+
 
               </Route>
 

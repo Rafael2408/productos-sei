@@ -2,7 +2,6 @@ import '../styles/ProductsPageStyle.css'
 import { useEffect, useState } from "react"
 import { useProducts } from "../context/ProductContext"
 import { useAuth } from '../context/AuthContext'
-import { useAudit } from '../context/AuditContext'
 import { useNavigate } from 'react-router-dom'
 
 function ProductsPage() {
@@ -27,7 +26,7 @@ function ProductsPage() {
         break;
       case 3: navigate('/auditor')
         break;
-      case 4: navigate('/products')
+      case 4: navigate('/user')
         break;
       default: navigate('/')
     }
@@ -82,7 +81,7 @@ function ProductsPage() {
                           </button>
                         </div>
                       ) : (
-                        <p className='text-danger'>Sin stock, espere que agreguen más.</p>
+                        <p className='text-danger'>Sin stock, espere que agreguen más productos.</p>
                       )}
                     </div>
                   )}
