@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import '../../styles/formstyle.css'
+import '../styles/formstyle.css'
 
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { getConfirmationCode } from '../../api/auth'
+import { getConfirmationCode } from '../api/auth'
 import { useEffect } from 'react';
 
-function ConfirmationCodePage() {
+function ConfirmationCode() {
     const { register, handleSubmit } = useForm();
     const { signup, isAuthenticated, user } = useAuth();  // Importa la función de registro de AuthContext
     const navigate = useNavigate();
@@ -44,6 +44,7 @@ function ConfirmationCodePage() {
                 <div
                     className="d-flex flex-column justify-content-center align-items-center"
                     style={{ height: "100vh" }}
+                    
                 >
                     <div id="confirmationForm">
                         <h2>Te hemos enviado un código de confirmación al correo</h2>
@@ -66,4 +67,4 @@ function ConfirmationCodePage() {
     );
 }
 
-export default ConfirmationCodePage;
+export default ConfirmationCode;

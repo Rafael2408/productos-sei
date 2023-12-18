@@ -1,6 +1,7 @@
 import '../../styles/formstyle.css'
 
 import ReCAPTCHA from "react-google-recaptcha";
+import ConfirmationCode from '../../components/ConfirmationCode';
 
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../../context/AuthContext'
@@ -10,6 +11,7 @@ import { useNavigate, Link } from 'react-router-dom'
 function RegisterPage() {
 
     const [captchaValue, setCaptchaValue] = useState(null)
+    const [showConfirmation, setShowConfirmation] = useState(false);
 
     const handleCaptchaChange = (value) => {
         setCaptchaValue(value); // Actualiza el estado del captcha cuando el usuario lo completa
@@ -31,8 +33,13 @@ function RegisterPage() {
         await checkingEmail(values.usu_correo)
         if(emailMessage !== 'El correo está disponible') return alert('El correo ya está registrado')
         await emailConfirmation(values)
-        navigate('/confirmation-code')
+        setShowConfirmation(true)
     })
+
+    if (showConfirmation) {
+        return <ConfirmationCode />; // Retorna el componente de confirmación si showConfirmation es verdadero
+    }
+
 
     return (
         <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: "100vh" }}>
@@ -55,7 +62,6 @@ function RegisterPage() {
                                 <span className='text-danger'>{errors.usu_nombre.message}</span>
                             )}
                         </div>
-
                         <div className='mb-3'>
                             <label className='form-label'>Correo Electrónico</label>
                             <input
@@ -78,7 +84,6 @@ function RegisterPage() {
                             )}
 
                         </div>
-
                         <div className='mb-3'>
                             <label className='form-label'>Contraseña</label>
                             <input
@@ -94,7 +99,6 @@ function RegisterPage() {
                                 <span className='text-danger'>{errors.usu_password.message}</span>
                             )}
                         </div>
-
                         <div className='mb-3'>
                             <label className='form-label'>Repetir Contraseña</label>
                             <input
@@ -110,18 +114,14 @@ function RegisterPage() {
                                 <span className='text-danger'>{errors.usu_password_repeat.message}</span>
                             )}
                         </div>
-
                         <ReCAPTCHA
                             sitekey="6Lc_Wi4pAAAAAKoI3e_7Z53-SJeqfDiq4c5mcDWe" // Reemplaza esto con tu clave de sitio de reCAPTCHA v2
                             onChange={handleCaptchaChange}
                         />
-
                         <button type='submit' className='btn btn-primary inputRegister'>
                             Registrarse
                         </button>
                     </form>
-
-                    
 
                     <p className='haveAcount' >¿Tienes una cuenta?
                         <Link className='links' to="/login">Iniciar Sesión</Link>

@@ -3,7 +3,6 @@ import { AuthProvider } from './context/AuthContext'
 
 import LoginPage from './pages/auth_pages/LoginPage'
 import RegisterPage from './pages/auth_pages/RegisterPage'
-import ConfirmationCodePage from './pages/auth_pages/ConfirmationCodePage'
 import ProductFormPage from './pages/ProductFormPage'
 import ProductsPage from './pages/ProductsPage'
 import ProfilePage from './pages/ProfilePage'
@@ -30,7 +29,6 @@ function App() {
               <Route path='/' element={<HomePage />} />
               <Route path='/login' element={<LoginPage />} />
               <Route path='/register' element={<RegisterPage />} />
-              <Route path='/confirmation-code' element={< ConfirmationCodePage />} />
 
 
               <Route element={<ProtectedRoute />}>
