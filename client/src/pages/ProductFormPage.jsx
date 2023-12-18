@@ -44,7 +44,7 @@ function ProductFormPage() {
       updateProduct(product, params.id)
     }
     else createProduct(product)
-    navigate('/products')
+    navigate('/user')
   })
 
 

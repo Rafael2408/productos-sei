@@ -33,7 +33,7 @@ function LoginPage() {
           navigate('/auditor');
           break;
         case 4:
-          navigate('/products');
+          navigate('/user');
           break;
         default:
           // Maneja cualquier otro caso

@@ -16,6 +16,7 @@ function TableAuditoria() {
                     <tr>
                         <th></th>
                         <th>Nombre de Usuario</th>
+                        <th>Rol</th>
                         <th>Acción</th>
                         <th>Fecha</th>
                         <th>Hora</th>
@@ -30,6 +31,7 @@ function TableAuditoria() {
                             <tr key={index}>
                                 <th>{index + 1}</th>
                                 <td>{audit.usu_nombre}</td>
+                                <td>{audit.usu_rol}</td>
                                 <td>{audit.aud_accion}</td>
                                 <td>{dateString}</td>
                                 <td>{timeString}</td>

@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [users, setUsers] = useState([])
 
-    const signup = async (user) => {
+    const signup = async (user, navigate) => {
         try {
             const res = await registerRequest(user)
             const newUser = {
@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }) => {
             }
             setIsAuthenticated(true)
             setUser(newUser)
+            navigate('/user')
         } catch (error) {
             console.log(error)
         }
