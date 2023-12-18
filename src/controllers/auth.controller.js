@@ -12,7 +12,7 @@ const register = async (req, res) => {
         const passwordHash = await bcrypt.hash(usu_password, 10) // 10 es el número de veces que se ejecuta el algoritmo
 
         const response = await pool.query(`
-        INSERT INTO usuarios (usu_nombre, usu_correo, usu_password, rol_id) VALUES ($1, $2, $3, 3)
+        INSERT INTO usuarios (usu_nombre, usu_correo, usu_password, rol_id) VALUES ($1, $2, $3, 4)
         RETURNING *
         `, [usu_nombre, usu_correo, passwordHash])
 
