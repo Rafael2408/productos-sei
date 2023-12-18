@@ -13,6 +13,7 @@ function ProductsPurchased() {
     return (
         <>
             {
+                productsPurchased &&
                 productsPurchased.length > 0 ? (<>
                     <div className="p-3">
                         <h3 className="text-center">Reporte de Compras de Productos por Usuarios</h3>
