@@ -31,15 +31,24 @@ function Navbar() {
                                 {(role !== 3) && (
                                     <>
                                         <li className="nav-item">
-                                            <Link className="nav-link btn" to="/products" id='btnVerListaProductos'>
-                                                <i className="fas fa-list"></i> Ver Lista de Productos
-                                            </Link>
-                                        </li>
-                                        <li className="nav-item">
                                             <Link className="nav-link btn btn-info" to="/add-product" >
                                                 <i className="fas fa-plus"></i> Agregar un Producto
                                             </Link>
                                         </li>
+                                        {(role === 2) &&
+                                            <li className="nav-item">
+                                                <Link className="nav-link btn" to='/operador' id='btnVerListaProductos'>
+                                                    <i className="fas fa-list"></i> Ver Lista de Productos
+                                                </Link>
+                                            </li>
+                                        }
+                                        {(role === 4) &&
+                                            <li className="nav-item">
+                                                <Link className="nav-link btn" to='/user' id='btnVerListaProductos'>
+                                                    <i className="fas fa-list"></i> Ver Lista de Productos
+                                                </Link>
+                                            </li>
+                                        }
                                     </>
                                 )}
                                 <li className="nav-item">

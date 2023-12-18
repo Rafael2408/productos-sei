@@ -16,7 +16,7 @@ function ConfirmationCodePage() {
             const storedCode = await getConfirmationCode(user.usu_correo);
             if (data.confirmationCode == storedCode.confirmationCode) {
                 await signup(user);
-                navigate('/products');
+                navigate('/user');
             } else {
                 alert('Código de confirmación incorrecto');
             }
@@ -26,7 +26,7 @@ function ConfirmationCodePage() {
     };
 
     useEffect(() => {
-        if (isAuthenticated) navigate('/products');
+        if (isAuthenticated) navigate('/user');
     }, [isAuthenticated]);
 
     return (

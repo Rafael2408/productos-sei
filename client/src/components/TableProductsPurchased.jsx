@@ -8,6 +8,8 @@ function TableProductsPurchased() {
         getProductsPurchased()
     }, [])
 
+    console.log(productsPurchased)
+
     return (
         <>
             {productsPurchased.length > 0 ? (<>

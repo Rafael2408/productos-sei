@@ -11,7 +11,6 @@ import { getUsersRequest } from '../api/users'
 import Cookies from 'js-cookie'
 export const AuthContext = createContext();
 
-
 export const useAuth = () => {
     const context = useContext(AuthContext)
     if (!context) {
@@ -31,11 +30,16 @@ export const AuthProvider = ({ children }) => {
     const signup = async (user) => {
         try {
             const res = await registerRequest(user)
+            const newUser = {
+                usu_id: res.data.id,
+                usu_nombre: res.data.nombre,
+                usu_correo: res.data.correo,
+                usu_rol: 4
+            }
             setIsAuthenticated(true)
-            navigate('/user');
+            setUser(newUser)
         } catch (error) {
             console.log(error)
-
         }
     }
 
