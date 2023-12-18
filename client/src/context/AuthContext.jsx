@@ -32,6 +32,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await registerRequest(user)
             setIsAuthenticated(true)
+            navigate('/user');
         } catch (error) {
             console.log(error)
 
@@ -60,7 +61,7 @@ export const AuthProvider = ({ children }) => {
                     navigate('/auditor');
                     break;
                 case 4:
-                    navigate('/products');
+                    navigate('/user');
                     break;
                 default:
                     // Maneja cualquier otro caso
