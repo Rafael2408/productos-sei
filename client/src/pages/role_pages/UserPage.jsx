@@ -28,9 +28,9 @@ function UserPage() {
 
     useEffect(() => {
         if (user) {
-            checkUser(user.usu_rol)
+            if(user.rol_id) checkUser(user.rol_id)
+            else checkUser(user.usu_rol)
         }
-        console.log(user)
     }, [user])
 
     const renderPage = () => {

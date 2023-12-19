@@ -74,7 +74,7 @@ const updateProduct = async (req, res) => {
 const getProductsPurchased = async (req, res) => {
     try {
         const response = await pool.query(`
-            SELECT u.usu_nombre, p.pro_nombre, prodcom_cantidad, p.pro_descripcion, prodcom_fecha
+            SELECT u.usu_nombre, p.pro_id, p.pro_nombre, prodcom_cantidad, p.pro_descripcion, prodcom_fecha
             FROM productos_comprados pc, usuarios u, productos p
             WHERE u.usu_id = pc.usu_id AND p.pro_id = pc.pro_id
         `);

@@ -14,6 +14,7 @@ function ProductsPage() {
     products,
     deleteProduct,
     createProductPurchased,
+
     getProductsPurchased,
     productsPurchased
   } = useProducts()
@@ -50,6 +51,15 @@ function ProductsPage() {
     setLoading(false)
   }
 
+  const handleDelete = async (pro_id) => {
+    const isProductPurchased = productsPurchased.some(product => product.pro_id === pro_id);
+    if (isProductPurchased) {
+      alert('No puedes eliminar un producto que está siendo comprado');
+    } else {
+      await deleteProduct(pro_id);
+    }
+  }
+
   useEffect(() => {
     getProducts()
     getProductsPurchased()
@@ -58,11 +68,9 @@ function ProductsPage() {
     }
   }, [user])
 
-  console.log(productsPurchased)
-
   return (
     <>
-      <div id='centrarDiv' className=" text-white">
+      <div id='centrarDiv' className=" text-white" >
         <h2>Lista de Productos</h2>
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {Array.isArray(products) && products.map((product) =>
@@ -82,7 +90,7 @@ function ProductsPage() {
                           <input className='form-control' type="number" min="1" max={product.pro_cantidad} value={quantity[product.pro_id] || 1}
                             onChange={(event) => handleQuantityChange(product.pro_id, event)} />
                           <button id='btnComprar' className='btn' onClick={() => handleBuy(product)} disabled={loading}>
-                            {loading ? 'Cargando...' : <i className="fas fa-shopping-cart"></i>}
+                            {loading ? 'Comprando...' : <i className="fas fa-shopping-cart"></i>}
                           </button>
                         </div>
                       ) : (
@@ -99,7 +107,7 @@ function ProductsPage() {
                       </button>
 
                       <button className='btn btn-danger' onClick={() => {
-                        deleteProduct(product.pro_id)
+                        handleDelete(product.pro_id)
                       }}>
                         <i className="fas fa-trash"></i> Eliminar
                       </button>

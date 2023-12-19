@@ -15,7 +15,7 @@ function AdminPage() {
         <button className={selectedButton === 'TableUsers' ? 'selected' : ''} onClick={() => { setSelectedOption('TableUsers'); setSelectedButton('TableUsers'); }}>Usuarios</button>
         <button className={selectedButton === 'TableProductsPurchased' ? 'selected' : ''} onClick={() => { setSelectedOption('TableProductsPurchased'); setSelectedButton('TableProductsPurchased'); }}>Productos Comprados</button>
       </div>
-      <div className="content">
+      <div className="content" >
         {selectedOption === 'ProductsPage' && <ProductsPage />}
         {selectedOption === 'TableUsers' && <TableUsers />}
         {selectedOption === 'TableProductsPurchased' && <TableProductsPurchased />}

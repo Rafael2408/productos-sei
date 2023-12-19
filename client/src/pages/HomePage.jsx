@@ -4,10 +4,11 @@ import img1 from '../assets/imagen1.png'
 import img2 from '../assets/imagen2.png'
 import img3 from '../assets/imagen3.png'
 import circular from '../assets/circular.jpg'
+
 function HomePage() {
   return (
     <>
-      <div>
+      <div className="container-fluid" >
         <div id="carouselExampleDark" className="carousel carousel-dark slide">
           <div className="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
