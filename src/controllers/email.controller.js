@@ -6,12 +6,13 @@ let confirmationCodes = {};
 exports.sendConfirmationEmail = function (userEmail) {
     // Crear un transportador de correo
     let transporter = nodemailer.createTransport({
-        service: 'gmail',
+        service: process.env.EMAIL_SERVICE,
         auth: {
-            user: 'correos.seguridad2024@gmail.com',
-            pass: 'suau rnin kcvf sltm' //clave de aplicación de terceros
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS //clave de aplicación de terceros
         }
     });
+
 
     // Generar un código de confirmación
     let codigoConfirmacion = Math.floor(Math.random() * 1000000);
@@ -21,7 +22,7 @@ exports.sendConfirmationEmail = function (userEmail) {
 
     // Enviar el correo electrónico
     let mailOptions = {
-        from: 'correos.seguridad2024@gmail.com',
+        from: process.env.EMAIL_USER,
         to: userEmail,
         subject: 'Código de confirmación',
         html: `<p style="font-size:20px">Tu código de confirmación para finalizar el registro es:</p><p style="font-size:30px">

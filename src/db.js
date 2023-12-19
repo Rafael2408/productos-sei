@@ -7,16 +7,18 @@ const { Pool } = require('pg')
 //     database: 'productos-sei',
 //     port: '5433'
 // })
+
 const pool = new Pool({
-    user: 'dilacrush',
-    host: 'csoft-sei-db.postgres.database.azure.com',
-    password: 'rafa1234*',
-    database: 'productos-sei',
-    port: '5432',
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
     ssl: {
         rejectUnauthorized: false,
     }
 })
+
 
 
 module.exports = pool;
