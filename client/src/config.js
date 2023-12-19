@@ -1,0 +1,2 @@
+export const SECRET_KEY_RECAPTCHA = '6Lc_Wi4pAAAAAKoI3e_7Z53-SJeqfDiq4c5mcDWe'
+

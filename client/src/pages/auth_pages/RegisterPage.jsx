@@ -1,6 +1,7 @@
 import '../../styles/formstyle.css'
 
 import ReCAPTCHA from "react-google-recaptcha";
+import { SECRET_KEY_RECAPTCHA } from '../../config';
 import ConfirmationCode from '../../components/ConfirmationCode';
 
 import { useForm } from 'react-hook-form'
@@ -115,7 +116,7 @@ function RegisterPage() {
                             )}
                         </div>
                         <ReCAPTCHA
-                            sitekey="6Lc_Wi4pAAAAAKoI3e_7Z53-SJeqfDiq4c5mcDWe" // Reemplaza esto con tu clave de sitio de reCAPTCHA v2
+                            sitekey={SECRET_KEY_RECAPTCHA}
                             onChange={handleCaptchaChange}
                         />
                         <button type='submit' className='btn btn-primary inputRegister'>
