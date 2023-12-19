@@ -17,7 +17,7 @@
     left: 0;
     height: 100%;
     overflow: auto;
-    margin-top: 64px;
+    margin-top: 63px;
 }
 
 .sidebar button {
@@ -54,7 +54,6 @@
     justify-content: center;
     padding: 10px;
     margin-left: 250px;
-    margin-top: 50px;
 }
 
 .content-inner {

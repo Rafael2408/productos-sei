@@ -25,7 +25,9 @@ function App() {
         <AuditProvider>
           <BrowserRouter>
           <Navbar/>
-            <Routes>
+            <div id="mainContent">
+
+            <Routes >
 
               <Route path='/login' element={<LoginPage />} />
               <Route path='/register' element={<RegisterPage />} />
@@ -49,6 +51,7 @@ function App() {
 
 
             </Routes>
+          </div>
           </BrowserRouter>
         </AuditProvider>
       </ProductProvider>
