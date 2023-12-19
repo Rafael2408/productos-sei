@@ -13,7 +13,9 @@ function ProductsPage() {
     getProducts,
     products,
     deleteProduct,
-    createProductPurchased
+    createProductPurchased,
+    getProductsPurchased,
+    productsPurchased
   } = useProducts()
 
   const { user } = useAuth()
@@ -50,10 +52,13 @@ function ProductsPage() {
 
   useEffect(() => {
     getProducts()
+    getProductsPurchased()
     if (user) {
       checkUser(user.rol_id)
     }
   }, [user])
+
+  console.log(productsPurchased)
 
   return (
     <>

@@ -38,6 +38,10 @@
     background-color: #0C7075;
 }
 
+.sidebar button.selected {
+    background-color: #0C7075;
+}
+
 .container {
     display: flex;
 }

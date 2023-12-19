@@ -8,10 +8,12 @@ import TableAuditoria from '../../components/TableAuditoria.jsx';
 import AuditorThreeTables from '../../components/AuditorThreeTables.jsx';
 import { useAudit } from '../../context/AuditContext.jsx';
 import AuditorGraphics from '../../components/AuditorGraphics.jsx';
+import AuditorRole from '../../components/AuditorRole.jsx';
 
 function AuditorPage() {
   const { dataAudit, getDataAudit } = useAudit()
-  const [selectedAnalysis, setSelectedAnalysis] = useState('all'); // Cambiado aquí
+  const [selectedAnalysis, setSelectedAnalysis] = useState('all');
+  const [selectedButton, setSelectedButton] = useState('all'); // Nuevo estado aquí
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,6 +35,8 @@ function AuditorPage() {
         return <AuditorThreeTables />;
       case 'graphics':
         return <AuditorGraphics />;
+      case 'role':
+        return <AuditorRole />;
       default:
         return null;
     }
@@ -42,11 +46,12 @@ function AuditorPage() {
     <div className="dashboard">
       <div className="sidebar">
         <h5 className="text-center p-3">Opciones de Auditor</h5>
-        <button onClick={() => setSelectedAnalysis('all')}>Todos los Registros</button>
-        <button onClick={() => setSelectedAnalysis('graphics')}>Gráficas en Acciones/Tiempo</button>
-        <button onClick={() => setSelectedAnalysis('acciones')}>Análisis de Acciones de Auditoría</button>
-        <button onClick={() => setSelectedAnalysis('usuarios')}>Top 5 Usuarios con Más Acciones Registradas</button>
-        <button onClick={() => setSelectedAnalysis('tablas')}>Análisis de las Tablas</button>
+        <button className={selectedButton === 'all' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('all'); setSelectedButton('all'); }}>Todos los Registros</button>
+        <button className={selectedButton === 'graphics' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('graphics'); setSelectedButton('graphics'); }}>Gráficas en Acciones/Tiempo</button>
+        <button className={selectedButton === 'acciones' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('acciones'); setSelectedButton('acciones'); }}>Análisis de Acciones de Auditoría</button>
+        <button className={selectedButton === 'usuarios' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('usuarios'); setSelectedButton('usuarios'); }}>Top 5 Usuarios con Más Acciones Registradas</button>
+        <button className={selectedButton === 'tablas' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('tablas'); setSelectedButton('tablas'); }}>Análisis de las Tablas</button>
+        <button className={selectedButton === 'role' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('role'); setSelectedButton('role'); }}>Análisis de los Roles</button>
       </div>
       <div className="content">
         {renderAnalysis()}
