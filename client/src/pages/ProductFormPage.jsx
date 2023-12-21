@@ -97,9 +97,10 @@ function ProductFormPage() {
                 <option value={8}>Productos Pesqueros</option>
               </select>
             </div>
-            <button type="submit" className="btn btn-success" id='btnsubmit'>
-              Guardar
-            </button>
+          <button type="submit" className="btn btn-success" id='btnsubmit'>
+            <i className="fas fa-save"></i> Guardar
+          </button>
+
           </form>
         </div>
       </div>

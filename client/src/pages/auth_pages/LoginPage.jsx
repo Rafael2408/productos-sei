@@ -125,8 +125,9 @@ function LoginPage() {
               />
 
               <button type="submit" className="btn btn-primary" id="btnSubmit">
-                Ingresar
+                <i className="fas fa-sign-in-alt"></i> Ingresar
               </button>
+
             </form>
             <p className='haveAcount'>¿Aún no tienes una cuenta?
               <Link className='links' to="/register">Registrarse</Link>

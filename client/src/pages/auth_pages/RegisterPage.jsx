@@ -120,8 +120,9 @@ function RegisterPage() {
                             onChange={handleCaptchaChange}
                         />
                         <button type='submit' className='btn btn-primary inputRegister'>
-                            Registrarse
+                            <i className="fas fa-user-plus"></i> Registrarse
                         </button>
+
                     </form>
 
                     <p className='haveAcount' >¿Tienes una cuenta?

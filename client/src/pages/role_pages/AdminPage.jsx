@@ -11,9 +11,16 @@ function AdminPage() {
     <div className="dashboard">
       <div className="sidebar">
         <h5 className="text-center p-2">Opciones de Administrador</h5>
-        <button className={selectedButton === 'ProductsPage' ? 'selected' : ''} onClick={() => { setSelectedOption('ProductsPage'); setSelectedButton('ProductsPage'); }}>Productos</button>
-        <button className={selectedButton === 'TableUsers' ? 'selected' : ''} onClick={() => { setSelectedOption('TableUsers'); setSelectedButton('TableUsers'); }}>Usuarios</button>
-        <button className={selectedButton === 'TableProductsPurchased' ? 'selected' : ''} onClick={() => { setSelectedOption('TableProductsPurchased'); setSelectedButton('TableProductsPurchased'); }}>Productos Comprados</button>
+        <button className={selectedButton === 'ProductsPage' ? 'selected' : ''} onClick={() => { setSelectedOption('ProductsPage'); setSelectedButton('ProductsPage'); }}>
+          <i className="fas fa-box-open"></i> Productos
+        </button>
+        <button className={selectedButton === 'TableUsers' ? 'selected' : ''} onClick={() => { setSelectedOption('TableUsers'); setSelectedButton('TableUsers'); }}>
+          <i className="fas fa-users"></i> Usuarios
+        </button>
+        <button className={selectedButton === 'TableProductsPurchased' ? 'selected' : ''} onClick={() => { setSelectedOption('TableProductsPurchased'); setSelectedButton('TableProductsPurchased'); }}>
+          <i className="fas fa-shopping-cart"></i> Productos Comprados
+        </button>
+
       </div>
       <div className="content" >
         {selectedOption === 'ProductsPage' && <ProductsPage />}

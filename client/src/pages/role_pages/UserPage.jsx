@@ -47,8 +47,13 @@ function UserPage() {
     return (
         <div className="dashboard">
             <div className="sidebar">
-                <button onClick={() => setSelectedPage('productos')}>Productos</button>
-                <button onClick={() => setSelectedPage('compras')}>Productos Comprados</button>
+                <button onClick={() => setSelectedPage('productos')}>
+                    <i className="fas fa-box-open"></i> Productos
+                </button>
+                <button onClick={() => setSelectedPage('compras')}>
+                    <i className="fas fa-shopping-cart"></i> Productos Comprados
+                </button>
+
             </div>
             <div className="content">
                 

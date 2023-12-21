@@ -46,12 +46,25 @@ function AuditorPage() {
     <div className="dashboard">
       <div className="sidebar">
         <h5 className="text-center p-3">Opciones de Auditor</h5>
-        <button className={selectedButton === 'all' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('all'); setSelectedButton('all'); }}>Todos los Registros</button>
-        <button className={selectedButton === 'graphics' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('graphics'); setSelectedButton('graphics'); }}>Gráficas en Acciones/Tiempo</button>
-        <button className={selectedButton === 'acciones' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('acciones'); setSelectedButton('acciones'); }}>Análisis de Acciones de Auditoría</button>
-        <button className={selectedButton === 'usuarios' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('usuarios'); setSelectedButton('usuarios'); }}>Top 5 Usuarios con Más Acciones Registradas</button>
-        <button className={selectedButton === 'tablas' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('tablas'); setSelectedButton('tablas'); }}>Análisis de las Tablas</button>
-        <button className={selectedButton === 'role' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('role'); setSelectedButton('role'); }}>Análisis de los Roles</button>
+        <button className={selectedButton === 'all' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('all'); setSelectedButton('all'); }}>
+          <i className="fas fa-list-alt"></i> Todos los Registros
+        </button>
+        <button className={selectedButton === 'graphics' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('graphics'); setSelectedButton('graphics'); }}>
+          <i className="fas fa-chart-line"></i> Gráficas en Acciones/Tiempo
+        </button>
+        <button className={selectedButton === 'acciones' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('acciones'); setSelectedButton('acciones'); }}>
+          <i className="fas fa-search"></i> Análisis de Acciones de Auditoría
+        </button>
+        <button className={selectedButton === 'usuarios' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('usuarios'); setSelectedButton('usuarios'); }}>
+          <i className="fas fa-users"></i> Top 5 Usuarios con Más Acciones Registradas
+        </button>
+        <button className={selectedButton === 'tablas' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('tablas'); setSelectedButton('tablas'); }}>
+          <i className="fas fa-table"></i> Análisis de las Tablas
+        </button>
+        <button className={selectedButton === 'role' ? 'selected' : ''} onClick={() => { setSelectedAnalysis('role'); setSelectedButton('role'); }}>
+          <i className="fas fa-user-tag"></i> Análisis de los Roles
+        </button>
+
       </div>
       <div className="content">
         {renderAnalysis()}
