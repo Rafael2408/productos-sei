@@ -9,12 +9,37 @@ import AuditorThreeTables from '../../components/AuditorThreeTables.jsx';
 import { useAudit } from '../../context/AuditContext.jsx';
 import AuditorGraphics from '../../components/AuditorGraphics.jsx';
 import AuditorRole from '../../components/AuditorRole.jsx';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext.jsx';
 
 function AuditorPage() {
+  const navigate = useNavigate()
   const { dataAudit, getDataAudit } = useAudit()
   const [selectedAnalysis, setSelectedAnalysis] = useState('all');
   const [selectedButton, setSelectedButton] = useState('all'); // Nuevo estado aquí
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth()
+
+  function checkUser(rol) {
+    switch (rol) {
+      case 1: navigate('/admin');
+        break;
+      case 2: navigate('/operador')
+        break;
+      case 3: navigate('/auditor')
+        break;
+      case 4: navigate('/user')
+        break;
+      default: navigate('/')
+    }
+  }
+
+  useEffect(() => {
+    if (user) {
+      if (user.rol_id) checkUser(user.rol_id)
+      else checkUser(user.usu_rol)
+    }
+  }, [user])
 
   useEffect(() => {
     getDataAudit()
