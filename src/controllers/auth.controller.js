@@ -26,9 +26,10 @@ const register = async (req, res) => {
 
         res.cookie('token', token)
         res.json({
-            id: response.rows[0].usu_id,
-            nombre: response.rows[0].usu_nombre,
-            correo: response.rows[0].usu_correo,
+            usu_id: response.rows[0].usu_id,
+            usu_nombre: response.rows[0].usu_nombre,
+            usu_correo: response.rows[0].usu_correo,
+            usu_rol: 4
         })
     } catch (error) {
         res.status(500).json({message: error.message})
