@@ -59,12 +59,12 @@ function LoginPage() {
     setCaptchaValue(value);
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     seterrorsArray(Object.values(signinErrors));
     if (Object.values(signinErrors).includes('Contraseña incorrecta')) {
       setTries(tries + 1)
       if (tries >= 2) {
-        await updateUserActive(correo, false)
+        updateUserActive(correo, false)
         alert('Su cuenta ha sido bloqueada, contacte con el administrador por favor')
       }
     }
