@@ -6,7 +6,12 @@ import { registerRequest,
     checkEmail, 
     verifyTokenRequest 
 } from '../api/auth'
-import { getUsersRequest } from '../api/users'
+
+import { getUsersRequest, 
+    getUserByIdRequest, 
+    updateUserActiveRequest, 
+    updateUserRoleRequest
+} from '../api/users'
 
 import Cookies from 'js-cookie'
 export const AuthContext = createContext();
@@ -162,6 +167,30 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const getUserById = async (id) => {
+        try {
+            const res = await getUserByIdRequest(id)
+            setUser( res.data )
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const updateUserActive = async (usu_correo, active) => {
+        try {
+            await updateUserActiveRequest(usu_correo, active)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const updateUserRole = async (id, rol) => {
+        try {
+            await updateUserRoleRequest(rol, id)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <AuthContext.Provider value={{
@@ -176,7 +205,11 @@ export const AuthProvider = ({ children }) => {
             user,
             isAuthenticated,
             emailMessage,
+
             getUsers,
+            getUserById,
+            updateUserActive,
+            updateUserRole,
             users
         }}>{children}</AuthContext.Provider>
     )

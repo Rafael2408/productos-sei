@@ -8,7 +8,7 @@ import { useAuth } from "../../context/AuthContext";
 
 function AdminPage() {
   const [selectedOption, setSelectedOption] = useState('ProductsPage');
-  const [selectedButton, setSelectedButton] = useState('ProductsPage'); // Nuevo estado aquí
+  const [selectedButton, setSelectedButton] = useState('ProductsPage');
   const navigate = useNavigate()
   const { user } = useAuth()
 

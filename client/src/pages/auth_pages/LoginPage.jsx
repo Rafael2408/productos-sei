@@ -17,8 +17,10 @@ function LoginPage() {
 
   const [captchaValue, setCaptchaValue] = useState(null)
   const [errorsArray, seterrorsArray] = useState(null)
+  const [tries, setTries] = useState(0)
+  const [correo, setCorreo] = useState('')
 
-  const {signin, errors: signinErrors, user, isAuthenticated} = useAuth();
+  const { signin, errors: signinErrors, user, isAuthenticated, updateUserActive } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +39,6 @@ function LoginPage() {
           navigate('/user');
           break;
         default:
-          // Maneja cualquier otro caso
           break;
       }
     }
@@ -46,6 +47,7 @@ function LoginPage() {
 
   const onSubmit = handleSubmit((data) => {
     if(captchaValue){
+      setCorreo(data.usu_correo)
       signin(data, navigate);
     }
     else{
@@ -54,12 +56,20 @@ function LoginPage() {
   });
 
   const handleCaptchaChange = (value) => {
-    setCaptchaValue(value); // Actualiza el estado del captcha cuando el usuario lo completa
+    setCaptchaValue(value);
   }
 
   useEffect(() => {
     seterrorsArray(Object.values(signinErrors));
+    if (Object.values(signinErrors).includes('Contraseña incorrecta')) {
+      setTries(tries + 1)
+      if (tries >= 2) {
+        updateUserActive(correo, false)
+        alert('Su cuenta ha sido bloqueada, contacte con el administrador por favor')
+      }
+    }
   }, [signinErrors]);
+
 
   return (
     <div>
@@ -120,7 +130,7 @@ function LoginPage() {
               </div>
 
               <ReCAPTCHA
-                sitekey={SECRET_KEY_RECAPTCHA} // Reemplaza esto con tu clave de sitio de reCAPTCHA v2
+                sitekey={SECRET_KEY_RECAPTCHA}
                 onChange={handleCaptchaChange}
               />
 
