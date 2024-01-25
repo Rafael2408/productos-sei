@@ -8,6 +8,12 @@ router.post('/send-email', (req, res) => {
     res.status(200).send('Correo de confirmación enviado');
 });
 
+router.post('/send-login-email', (req, res) => {
+    const { usu_correo } = req.body;
+    sendLoginEmail(usu_correo);
+    res.status(200).send('Correo de confirmación enviado');
+});
+
 router.get('/get-confirmation-code', (req, res) => {
     const { usu_correo } = req.query;
     const confirmationCode = getConfirmationCode(usu_correo);

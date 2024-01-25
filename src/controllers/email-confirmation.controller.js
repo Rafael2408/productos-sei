@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 // Objeto para almacenar los códigos de confirmación
 let confirmationCodes = {};
 
-exports.sendConfirmationEmail = function (userEmail) {
+exports.sendLoginEmail = function (userEmail) {
     // Crear un transportador de correo
     let transporter = nodemailer.createTransport({
         service: process.env.EMAIL_SERVICE,
@@ -15,15 +15,19 @@ exports.sendConfirmationEmail = function (userEmail) {
 
 
     // Guardar el código de confirmación en el objeto...
-    confirmationCodes[userEmail] = codigoConfirmacion;
+    // confirmationCodes[userEmail] = codigoConfirmacion;
+
+    currentDate = new Date();
 
     // Enviar el correo electrónico
     let mailOptions = {
         from: process.env.EMAIL_USER,
         to: userEmail,
-        subject: 'Código de confirmación',
-        html: `<p style="font-size:20px">Tu código de confirmación para finalizar el registro es:</p><p style="font-size:30px">
-        ${codigoConfirmacion}</p>`
+        subject: 'Has iniciado sesión',
+        html: `<p style="font-size:20px">Has iniciado sesión en Seguridad y Productos a la hora:</p><p style="font-size:30px">
+        ${currentDate}</p>
+        <p>Con el correo: ${userEmail}</p>
+        `
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -35,11 +39,11 @@ exports.sendConfirmationEmail = function (userEmail) {
     });
 };
 
-exports.getConfirmationCode = function (userEmail) {
-    // Obtener el código de confirmación del objeto...
-    let codigoConfirmacion = confirmationCodes[userEmail];
+// exports.getConfirmationCode = function (userEmail) {
+//     // Obtener el código de confirmación del objeto...
+//     let codigoConfirmacion = confirmationCodes[userEmail];
 
-    // Devolver el código de confirmación
-    return codigoConfirmacion;
-};
+//     // Devolver el código de confirmación
+//     return codigoConfirmacion;
+// };
 
