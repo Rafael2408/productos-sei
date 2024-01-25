@@ -5,7 +5,8 @@ import { registerRequest,
     validateShemaRegister, 
     checkEmail, 
     verifyTokenRequest,
-    loginEmailRequest 
+    loginEmailRequest,
+    forgetPassowrdRequest 
 } from '../api/auth'
 
 import { getUsersRequest, 
@@ -104,6 +105,15 @@ export const AuthProvider = ({ children }) => {
     const sendLoginEmail = async (user) => {
         try {
             await loginEmailRequest(user.usu_correo)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    //Ejercicio 3 para fronted send Password Forget
+    const sendPassowrdForget = async (usu_correo) => {
+        try {
+            await forgetPassowrdRequest(usu_correo)
         } catch (error) {
             console.log(error)
         }
@@ -208,6 +218,7 @@ export const AuthProvider = ({ children }) => {
             checkingEmail,
             emailConfirmation,
             sendLoginEmail,
+            sendPassowrdForget,
             signup,
             signin,
             logout,

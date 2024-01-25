@@ -10,7 +10,7 @@ const register = async (req, res) => {
     const { usu_nombre, usu_correo, usu_password } = req.body
     try {
         
-        const passwordHash = await bcrypt.hash(usu_password, 10) // 10 es el número de veces que se ejecuta el algoritmo
+        const passwordHash = await bcrypt.hash(usu_password, 10)
 
         const response = await pool.query(`
         INSERT INTO usuarios (usu_nombre, usu_correo, usu_password, rol_id) VALUES ($1, $2, $3, 4)
@@ -76,8 +76,6 @@ const login = async (req, res) => {
         if (!userFound.rows[0].usu_active) {
             return res.status(400).json({ message: 'El usuario está inactivo. Por favor, contacta con el administrador.' });
         }
-
-
 
         const isMatch = await bcrypt.compare(usu_password, userFound.rows[0].usu_password)
         if (!isMatch) {

@@ -1,58 +1,24 @@
-import { useEffect,useState } from "react"
-import { useAuth } from "../context/AuthContext"
+import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
 
+function Example() {
+    const { users, getUsers, sendPassowrdForget } = useAuth();
 
-function example() {
-    const {users, getUsers} = useAuth()
-    const [user, setUser] = useState(null)
-    const [option, setOption] = useState('')
-
-    useEffect(() => {
-        getUsers()
-    }, [])
-
-    useEffect(() => {
-        setUser(users[0])
-    }, [users])
-
-    useEffect(() => {
-
-    }, [])
-
-    const exampleFunction = (e) =>{
-        console.log(e.target.value)
-        setOption(e.target.value)
-    }
+    const sendNewPassword = async (event) => {
+        event.preventDefault();  // Agrega esta línea
+        const correo = event.target.elements.usu_correo.value;
+        console.log(correo);
+        await sendPassowrdForget(correo);
+    };
 
     return (
         <div>
-           
-                {
-                    users && users.map(user => {
-                        return <p>{user.usu_nombre}</p>
-                        
-                    })
-                }
-            <form action="">
-
-                <select name="" id=""
-                    onChange={e => exampleFunction(e)}
-                    value={option}
-                >
-                    {
-                        users && users.map(user => {
-                            return <option value={user.usu_id}>{user.usu_nombre}</option>
-                            
-                        })
-                    }
-                </select>
-
-                <input type="text" name="" id="" placeholder="adasd"/>
+            <form onSubmit={sendNewPassword}>
+                <input type="email" name="usu_correo" id="" placeholder="pon tu correo" />
+                <input type="submit" value="Solicitar nueva contraseña" />
             </form>
-
-            
         </div>
-    )
+    );
 }
 
-export default example
+export default Example;
