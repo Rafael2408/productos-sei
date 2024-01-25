@@ -17,6 +17,8 @@ import { AuditProvider } from './context/AuditContext'
 import Navbar from './components/Navbar'
 import UserPage from './pages/role_pages/UserPage'
 
+import Example from './pages/example'
+
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function App() {
               <Route path='/login' element={<LoginPage />} />
               <Route path='/register' element={<RegisterPage />} />
               <Route path='/' element={<HomePage />} />
+              <Route path='/example' element={<Example/>}/>
 
 
               <Route element={<ProtectedRoute />}>

@@ -67,6 +67,8 @@ const updateUserRole = async (req, res) => {
     }
 }
 
+
+
 module.exports = {
     getUsers,
     getUserById,

@@ -17,7 +17,7 @@ function LoginPage() {
 
   const [captchaValue, setCaptchaValue] = useState(null)
   const [errorsArray, seterrorsArray] = useState(null)
-  const [tries, setTries] = useState(0)
+
   const [correo, setCorreo] = useState('')
 
   const { signin, errors: signinErrors, user, isAuthenticated, updateUserActive } = useAuth();
@@ -61,13 +61,13 @@ function LoginPage() {
 
   useEffect(() => {
     seterrorsArray(Object.values(signinErrors));
-    if (Object.values(signinErrors).includes('Contraseña incorrecta')) {
-      setTries(tries + 1)
-      if (tries >= 2) {
-        updateUserActive(correo, false)
-        alert('Su cuenta ha sido bloqueada, contacte con el administrador por favor')
-      }
-    }
+    // if (Object.values(signinErrors).includes('Contraseña incorrecta')) {
+    //   setTries(tries + 1)
+    //   if (tries >= 2) {
+    //     updateUserActive(correo, false)
+    //     alert('Su cuenta ha sido bloqueada, contacte con el administrador por favor')
+    //   }
+    // }
   }, [signinErrors]);
 
 

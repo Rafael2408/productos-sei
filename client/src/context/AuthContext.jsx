@@ -74,7 +74,6 @@ export const AuthProvider = ({ children }) => {
                     navigate('/user');
                     break;
                 default:
-                    // Maneja cualquier otro caso
                     break;
             }
         } catch (error) {
@@ -121,7 +120,7 @@ export const AuthProvider = ({ children }) => {
         if (Object.keys(errors).length > 0) {
             const timer = setTimeout(() => {
                 setErrors([])
-            }, 5000);
+            }, 10000);
             return () => clearTimeout(timer)
         }
     }, [errors]);
