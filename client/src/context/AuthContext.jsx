@@ -4,7 +4,9 @@ import { registerRequest,
     emailRequest, 
     validateShemaRegister, 
     checkEmail, 
-    verifyTokenRequest 
+    verifyTokenRequest,
+    loginEmailRequest,
+    forgetPassowrdRequest 
 } from '../api/auth'
 
 import { getUsersRequest, 
@@ -60,6 +62,7 @@ export const AuthProvider = ({ children }) => {
             }
             setIsAuthenticated(true)
             setUser(newUser)
+            //sendLoginEmail(user)
             switch (res.data.rol) {
                 case 1:
                     navigate('/admin');
@@ -93,6 +96,24 @@ export const AuthProvider = ({ children }) => {
             await emailRequest(user.usu_correo)
             setUser(user)
             // setIsAuthenticated(true)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    //Ejercicio 2 para fronted
+    const sendLoginEmail = async (user) => {
+        try {
+            await loginEmailRequest(user.usu_correo)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    //Ejercicio 3 para fronted send Password Forget
+    const sendPassowrdForget = async (usu_correo) => {
+        try {
+            await forgetPassowrdRequest(usu_correo)
         } catch (error) {
             console.log(error)
         }
@@ -196,6 +217,8 @@ export const AuthProvider = ({ children }) => {
             validateSchema,
             checkingEmail,
             emailConfirmation,
+            sendLoginEmail,
+            sendPassowrdForget,
             signup,
             signin,
             logout,

@@ -20,7 +20,7 @@ function LoginPage() {
 
   const [correo, setCorreo] = useState('')
 
-  const { signin, errors: signinErrors, user, isAuthenticated, updateUserActive } = useAuth();
+  const { signin, errors: signinErrors, user, isAuthenticated, updateUserActive, sendPassowrdForget } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -141,6 +141,9 @@ function LoginPage() {
             </form>
             <p className='haveAcount'>¿Aún no tienes una cuenta?
               <Link className='links' to="/register">Registrarse</Link>
+            </p>
+            <p className='haveAcount'>¿Has olvidado la contraseña?
+              <Link className='links' to="/example">solicitar una nueva</Link>
             </p>
 
           </div>

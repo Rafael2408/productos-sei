@@ -3,13 +3,14 @@ const bcrypt = require('bcryptjs')
 const { createAccessToken } = require('../libs/jwt.js')
 const jwt = require('jsonwebtoken')
 const { TOKEN_SECRET } = require('../config.js')
+const { sendLoginEmail } = require('./email-confirmation.controller.js')
 const maxTries = 3
 
 const register = async (req, res) => {
     const { usu_nombre, usu_correo, usu_password } = req.body
     try {
         
-        const passwordHash = await bcrypt.hash(usu_password, 10) // 10 es el número de veces que se ejecuta el algoritmo
+        const passwordHash = await bcrypt.hash(usu_password, 10)
 
         const response = await pool.query(`
         INSERT INTO usuarios (usu_nombre, usu_correo, usu_password, rol_id) VALUES ($1, $2, $3, 4)
@@ -76,8 +77,6 @@ const login = async (req, res) => {
             return res.status(400).json({ message: 'El usuario está inactivo. Por favor, contacta con el administrador.' });
         }
 
-
-
         const isMatch = await bcrypt.compare(usu_password, userFound.rows[0].usu_password)
         if (!isMatch) {
             const tries = userFound.rows[0].usu_tries + 1
@@ -92,6 +91,7 @@ const login = async (req, res) => {
         }
 
 
+        sendLoginEmail(usu_correo)
 
         updateTries(usu_correo, 0)
         // Generacion del token
