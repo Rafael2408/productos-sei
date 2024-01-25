@@ -117,8 +117,8 @@ function LoginPage() {
                   {...register("usu_password", {
                     required: "La contraseña es requerida",
                     minLength: {
-                      value: 5,
-                      message: "La contraseña debe tener al menos 5 caracteres",
+                      value: 8,
+                      message: "La contraseña debe tener al menos 8 caracteres",
                     },
                   })}
                 />
