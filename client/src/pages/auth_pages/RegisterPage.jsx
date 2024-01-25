@@ -38,7 +38,7 @@ function RegisterPage() {
     })
 
     if (showConfirmation) {
-        return <ConfirmationCode />; // Retorna el componente de confirmación si showConfirmation es verdadero
+        return <ConfirmationCode />;
     }
 
 
