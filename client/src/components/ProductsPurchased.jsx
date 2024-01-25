@@ -30,7 +30,7 @@ function ProductsPurchased() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {productsPurchased.map((product, index) => {
+                                {productsPurchased && productsPurchased.length > 0 &&  productsPurchased.map((product, index) => {
                                     const date = new Date(product.prodcom_fecha);
                                     const dateString = date.toLocaleDateString();
                                     const timeString = date.toLocaleTimeString();

@@ -93,13 +93,18 @@ function RegisterPage() {
                                 className='form-control inputRegister'
                                 {...register('usu_password', {
                                     required: 'La contraseña es requerida',
-                                    minLength: { value: 6, message: 'La contraseña debe tener al menos 8 caracteres' }
+                                    minLength: { value: 8, message: 'La contraseña debe tener al menos 8 caracteres' },
+                                    pattern: {
+                                        value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[@#$%^&+=*]).{8,}$/,
+                                        message: 'La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.'
+                                    }
                                 })}
                             />
                             {errors.usu_password && (
                                 <span className='text-danger'>{errors.usu_password.message}</span>
                             )}
                         </div>
+
                         <div className='mb-3'>
                             <label className='form-label'>Repetir Contraseña</label>
                             <input
