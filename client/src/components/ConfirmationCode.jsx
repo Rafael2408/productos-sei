@@ -22,11 +22,11 @@ function ConfirmationCode() {
                 await signup(user, navigate);
             } else {
                 setAttempts(attempts - 1); // Reduce los intentos si el código es incorrecto
-                if (attempts >= 1) {
+                if (attempts -1 >= 1) {
                     alert(`Código de confirmación incorrecto. Te quedan ${attempts - 1} intentos.`);
                 }
                 else{
-                    alert(`Tu correo ha sido betado, trata de registrarte con un nuevo correo.`);
+                    navigate('/login')
                 }
             }
         } catch (error) {
