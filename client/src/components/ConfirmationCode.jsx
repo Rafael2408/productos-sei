@@ -9,10 +9,10 @@ import { useEffect } from 'react';
 
 function ConfirmationCode() {
     const { register, handleSubmit } = useForm();
-    const { signup, isAuthenticated, user } = useAuth();  // Importa la función de registro de AuthContext
+    const { signup, isAuthenticated, user } = useAuth(); 
     const navigate = useNavigate();
 
-    const [attempts, setAttempts] = useState(3); // Agrega un estado para los intentos
+    const [attempts, setAttempts] = useState(3); 
 
     const onSubmit = async (data) => {
         try {
@@ -21,7 +21,7 @@ function ConfirmationCode() {
             if (data.confirmationCode == storedCode.confirmationCode) {
                 await signup(user, navigate);
             } else {
-                setAttempts(attempts - 1); // Reduce los intentos si el código es incorrecto
+                setAttempts(attempts - 1); 
                 if (attempts -1 >= 1) {
                     alert(`Código de confirmación incorrecto. Te quedan ${attempts - 1} intentos.`);
                 }
