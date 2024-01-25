@@ -120,14 +120,17 @@ function LoginPage() {
                       value: 8,
                       message: "La contraseña debe tener al menos 8 caracteres",
                     },
+                    pattern: {
+                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/,
+                      message: "La contraseña debe contener al menos un número, una letra minúscula, una letra mayúscula y tener al menos 8 caracteres de longitud",
+                    },
                   })}
                 />
                 {errors.usu_password && (
-                  <span className="text-danger">
-                    {errors.usu_password.message}
-                  </span>
+                  <span className="text-danger">{errors.usu_password.message}</span>
                 )}
               </div>
+
 
               <ReCAPTCHA
                 sitekey={SECRET_KEY_RECAPTCHA}
