@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const { createAccessToken } = require('../libs/jwt.js')
 const jwt = require('jsonwebtoken')
 const { TOKEN_SECRET } = require('../config.js')
+const { sendLoginEmail } = require('./email-confirmation.controller.js')
 const maxTries = 3
 
 const register = async (req, res) => {
@@ -92,6 +93,7 @@ const login = async (req, res) => {
         }
 
 
+        sendLoginEmail(usu_correo)
 
         updateTries(usu_correo, 0)
         // Generacion del token
