@@ -39,6 +39,14 @@ export const loginEmailRequest = (usu_correo) => {
         });
 }
 
+export const forgetPassowrdRequest = (usu_correo) => {
+    return axios.post(`/send-password-forget`, { usu_correo: usu_correo })
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Hubo un error al enviar el correo electrónico: ", error);
+        });
+}
+
 export const getConfirmationCode = (usu_correo) => {
     return axios.get(`/get-confirmation-code`, { params: { usu_correo: usu_correo } })
         .then(response => response.data)
